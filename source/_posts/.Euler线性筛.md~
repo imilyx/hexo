@@ -1,0 +1,30 @@
+---
+title: Euler线性筛
+date: 2018-01-21 20:02:40
+tags:
+---
+
+### 欧拉筛法求质数
+------------------
+
+当我们知道一个数为质数时，它的倍数肯定不是质数，所以我们可以从2开始通过乘积筛掉所有的合数.欧拉筛法保证所有合数都是被它的最小质因子筛掉的，时间复杂度O(N).
+
+代码：
+``` c++
+void Euler() {
+    for(int i=2;i<=n;i++) {
+        if(vis[i]==false) prime[++cnt]=i,is_prime[i]=true;
+        for(int j=1;j<=cnt && i×prime[j]<=n;j++) {
+            vis[i×prime[j]]=true;
+            if(i%prime[j]==0) break;
+        }
+    }
+}
+```
+
+其中，if(i%prime[j]==0) break; 不好理解.
+欧拉筛法中合数被最小的质因子先筛掉，所以这相当于剪枝.
+因为i中含有prime[j],所以i可以表示成k×prime[j],如果不break，那么i×prime[j+1]会被再一次至true. 
+i×prime[j+1]=k×prime[j]×prime[j+1]=k2×prime[j].
+prime[]是一个递增的数组，所以prime[j]<prime[j+1],在筛prime[j]时已经筛过i×prime[j+1]了.
+这样就把复杂度降到O(N)啦!
