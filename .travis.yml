@@ -1,5 +1,17 @@
 language: node_js
 node_js: node
+cache:
+  directories:
+    - node_modules
+before_install:
+  - git config --global user.email "xiaomi_hz@126.com"
+  - git config --global user.name "imilyx"
 script:
-  - hexo g
-  - hexo d
+  - hexo clean
+  - hexo generate
+after_success:
+  - cd ./public
+  - git init
+  - git add --all
+  - git commit -m "Travis CI Auto Builder"
+  - git push --quiet --force https://$REPO_TOKEN@github.com/imilyx/imilyx.github.io.git
