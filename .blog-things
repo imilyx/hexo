@@ -3,8 +3,9 @@ ST表
 最小表示法 vijos_1437
 二分图最大匹配 atcoder092_a luogu_3386
 单调队列 luogu_2698 luogu_3957 trip 多数作为一种优化工具
+图兰定理
+KMP
 。trie
-。KMP
 。AC自动机
 。网络流 最大流 费用流
 。cdq分治
