@@ -2,6 +2,7 @@
 title: '[CF-Gym-100340A]-Cookies'
 date: 2018-05-01 14:45:40
 tags:
+mathjax: true
 ---
 
 https://vjudge.net/problem/Gym-100340A
