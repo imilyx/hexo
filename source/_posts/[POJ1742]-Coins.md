@@ -2,6 +2,7 @@
 title: '[POJ1742]-Coins'
 date: 2018-05-18 20:13:40
 tags:
+    - 背包
 ---
 
 https://vjudge.net/problem/POJ-1742
