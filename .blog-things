@@ -42,8 +42,6 @@ BSGS baby step giant step 大步小步法
 
 -------
 
-3. 整数拆分数: 
-    O(n^2): F[x][y] = F[x][]
 一个很有意思的网站：oeis.org
 
 
