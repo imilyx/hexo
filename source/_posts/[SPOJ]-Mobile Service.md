@@ -2,6 +2,7 @@
 title: '[SPOJ]-Mobile Service'
 date: 2018-04-28 18:40:40
 tags:
+    - 线性动规
 ---
 
 http://www.spoj.com/problems/SERVICE/

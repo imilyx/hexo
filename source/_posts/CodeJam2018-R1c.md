@@ -2,6 +2,7 @@
 title: CodeJam2018-R1c
 date: 2018-05-07 22:26:40
 tags:
+    - 比赛
 ---
 
 ### A. A Whole New Word
