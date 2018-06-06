@@ -23,7 +23,6 @@ https://vjudge.net/problem/POJ-3585
 $$D[x] = \sum_{y \in Son(x)}
 \begin{cases}
 min(D[y], c(x, y))& {degree[y] > 1}\\
-
 c(x, y)& {degree[y] = 1}
 \end{cases}
 $$
@@ -41,13 +40,11 @@ $$
 
 因为把 x 作为源点的总流量为 $F[x]$ ，从 x 流向 y 的流量为 $min(D[y], c(x, y))$ ，所以从 x 流向除 y 以外的其他部分的流量就是二者之差。
 
-$$ F[y] = D[y] +
+$$ F[y] = D[y] + 
 \begin{cases}
 min(F[x] - min(D[y], c(x, y)), c(x, y))& {degree[x] > 1}\\
-
 c(x, y)& {degree[x] = 1}
-\end{cases}
-$$
+\end{cases} $$
 
 $F[y]$ 就是把源点（树根）从 x 换位 y 后，流量的计算结果。这是一个自顶向下的递推方程，我们通过一次深度优先遍历实现。这便是“换根”的体现。
 
