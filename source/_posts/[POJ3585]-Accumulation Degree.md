@@ -22,8 +22,9 @@ https://vjudge.net/problem/POJ-3585
 
 $$D[x] = \sum_{y \in Son(x)}
 \begin{cases}
-min(D[y], c(x, y))& {degree[y] > 1}\\
-c(x, y)& {degree[y] = 1}
+min(D[y], c(x, y))& if:{degree[y] > 1}\\
+
+c(x, y)& if:{degree[y] = 1}
 \end{cases}
 $$
 
@@ -42,8 +43,9 @@ $$
 
 $$ F[y] = D[y] +
 \begin{cases}
-min(F[x] - min(D[y], c(x, y)), c(x, y))& {degree[x] > 1}\\
-c(x, y)& {degree[x] = 1}
+min(F[x] - min(D[y], c(x, y)), c(x, y))& if:{degree[x] > 1}\\
+
+c(x, y)& if:{degree[x] = 1}
 \end{cases}
 $$
 
