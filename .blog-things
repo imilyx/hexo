@@ -44,3 +44,29 @@ BSGS baby step giant step 大步小步法
 
 去做BZOJ 2784
 BZOJ 1001 最小割转最短路（那是什么东西
+
+------------
+
+阶乘进位制分解 (uoj82)
+	康托展开: 0! 1! 2! 3! .... n!
+	斐波那契: F[0] F[1] F[2] F[3] F[4].. F[n] 
+			T[i]<2: N/F[i]>=2 -> N>=F[i]*2 N>=F[i+1]+F[i-1]
+			N-/- >=F[i+1]
+高斯消元
+差分约束
+积性函数
+瑞士轮
+x[i]^x[i+1]=2zerobit()-1
+
+-----------
+
+luogu_1378.cpp
+luogu_1966.cpp
+luogu_2051.cpp
+luogu_2258.cpp
+
+uoj_60.cpp
+uoj_74.cpp
+uoj_21.cpp
+uoj_350.cpp
+uoj_118.cpp
