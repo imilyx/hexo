@@ -1,5 +1,5 @@
 ---
-title: CF24E-Berland collider
+title: '[CF24E]-Berland collider'
 date: 2018-04-27 21:24:40
 tags:
     - 二分
