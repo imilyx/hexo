@@ -56,6 +56,8 @@ $$= \sum\limits_{d = 1}^n \mu(d) * \lfloor \frac{n}{d} \rfloor * \lfloor \frac{m
 
 容易知道 $\lfloor n / d \rfloor$ 单调不上升，根据整数分块的知识，最多有 $2\sqrt{n}$ 种不同的取值。所以按取值分成 $O(\sqrt{n})$ 个段分别处理，一个连续的段内的和可以用预处理出的莫比乌斯函数前缀和求出。
 
+初次涉及，觉得非常妙，自己想是绝不可能想到的，只能看题解，但据说是套路题，多做做，要有信心。
+
 code:
 ``` c++
 #include <bits/stdc++.h>
