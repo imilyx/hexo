@@ -2,7 +2,7 @@
 title: '[POJ1201]-Intervals'
 date: 2018-07-11 22:56:40
 tags: 
-    - 差分约束
+    - 差分
 mathjax: true
 ---
 
