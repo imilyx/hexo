@@ -42,7 +42,7 @@ x  f(x)   ax   bx   cx
 
 可以发现，这个三次的多项式在三阶差分时相等。
 
-如上所述，这是个模板题。
+如上所述，这是个模板题。我们根据前 s 项逆推回去。
 
 code:
 ``` c++
@@ -60,7 +60,7 @@ int main() {
         for (int i = 1; i < S; i++)
             for (int j = 0; j < S - i; j++)
                 f[i][j] = f[i - 1][j + 1] - f[i - 1][j];
-        for (int i = 1; i <= C; i++) f[S - 1][i] = f[S - 1][i - 1];
+        for (int i = 1; i <= C; i++) f[S - 1][i] = f[S - 1][i - 1];  // 逆推至此
         for (int i = S - 2; i >= 0; i--)
             for (int j = S - i; j < S - i + C; j++)
                 f[i][j] = f[i + 1][j - 1] + f[i][j - 1];
