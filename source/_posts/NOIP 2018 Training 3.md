@@ -1,5 +1,5 @@
 ---
-title: 'NOIP 2018 Training #3'
+title: 'NOIP 2018 Training 3'
 date: 2018-07-02 14:50:40
 tags: 
     - 比赛

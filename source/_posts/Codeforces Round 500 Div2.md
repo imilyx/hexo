@@ -1,5 +1,5 @@
 ---
-title: 'Codeforces Round #500 Div2'
+title: 'Codeforces Round 500 Div2'
 date: 2018-07-31 22:36:40
 tags: 
     - 比赛
