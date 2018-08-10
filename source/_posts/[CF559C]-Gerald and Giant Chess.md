@@ -1,6 +1,6 @@
 ---
 title: '[CF559C]-Gerald and Giant Chess'
-date: 2018-08-10 17:37:40
+date: 2018-08-10 17:21:40
 tags: 
     - 计数DP
     - 排列组合
