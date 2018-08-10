@@ -2,7 +2,7 @@
 title: '[POJ3585]-Accumulation Degree'
 date: 2018-06-06 14:45:40
 tags:
-    - 树形动规
+    - 树形DP
 mathjax: true
 ---
 

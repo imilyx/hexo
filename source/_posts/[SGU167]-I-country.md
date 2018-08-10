@@ -2,7 +2,7 @@
 title: '[SGU167]-I-country'
 date: 2018-04-30 15:57:40
 tags:
-    - 线性动规
+    - 线性DP
 ---
 
 https://vjudge.net/problem/SGU-167
