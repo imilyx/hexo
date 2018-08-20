@@ -19,3 +19,7 @@ mathjax: true
 4. left + 1 < right, mid = (left + right) / 2, left = mid, right = mid(保证每次循环时数组长度都会至少减一，终止时数组长度可能为2(left + 1 == right), 可能为1(left == right), 但绝不会为0(left > right)，因为每一轮循环前总有 left <= mid <= right).
 
 目前碰到的就这些，实数域的不在这儿，但自己写程序时还是专背一种好了。
+
+----
+
+突然发现蛮神奇的东西：如果要用前两种写法的话，输出答案就是 l；如果用第三种的话，if (chk(mid)) ans = mid，答案就是 ans。通过各OJ上的做题经验得证，还是第三种写法较为保险。
