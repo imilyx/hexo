@@ -3,6 +3,7 @@ title: '[POJ1964]-City Game'
 date: 2018-08-23 16:12:40
 tags:
     - 单调栈
+mathjax: true
 ---
 
 [题目链接](https://vjudge.net/problem/POJ-1964)
