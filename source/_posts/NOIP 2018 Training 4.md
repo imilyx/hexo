@@ -1,6 +1,6 @@
 ---
 title: 'NOIP 2018 Training 4'
-date: 2018-08-25 14:50:40
+date: 2018-08-27 14:50:40
 tags: 
     - 比赛
 mathjax: true
