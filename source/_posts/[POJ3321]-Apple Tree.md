@@ -53,8 +53,6 @@ int main() {
     for (int i = 1; i <= n; i++) {
         have[i] = 1;
         upd(l[i], 1);// upd(r[i], -1);
-        for (int j = 1; j <= n; j++) printf("%d ", C[j]);
-        puts("");
     }
     scanf("%d", &m);
     while (m--) {
@@ -64,8 +62,6 @@ int main() {
             else upd(l[x], 1);// upd(r[x], -1);
             have[x] ^= 1;
         } else printf("%d\n", sum(r[x]) - sum(l[x] - 1));
-        for (int j = 1; j <= n; j++) printf("%d ", C[j]);
-        puts("");
     }
     return 0;
 }
