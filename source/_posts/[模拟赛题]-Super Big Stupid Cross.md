@@ -1,5 +1,5 @@
 ---
-title: '[模拟赛题]-Super Big Stupid Cross)'
+title: '[模拟赛题]-Super Big Stupid Cross'
 date: 2019-02-22 19:20:11
 tags:
     - 扫描线
