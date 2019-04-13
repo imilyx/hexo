@@ -22,7 +22,7 @@ code :
 using namespace std;
 
 typedef pair<int, int> pii;
-const int N = 1e4 + 10, M = 400000;
+const int N = 1e4 + 10, M = 4200010;
 priority_queue<pii, vector<pii>, greater<pii> >pq;
 int n, m, K;
 int to[M], nxt[M], lnk[M], cnt, val[M], dis[M], vis[M];
