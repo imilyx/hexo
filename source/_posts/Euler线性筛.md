@@ -14,19 +14,19 @@ tags:
 
 代码：
 ``` c++
-int v[N], prime[N];  // v[i] 储存 i 的最小质因子
+int vis[N], prime[N];
 void primes(int n) {
-    memset(v, 0, sizeof(v));  // 最小质因子
+    memset(vis, 0, sizeof(vis));
     m = 0;  // 质数数量
     for (int i = 2; i <= n; i++) {
-        if (v[i] == 0) {
-            v[i] = i, prime[++m] = i;
+        if (!vis[i]) {
+            prime[++m] = i;
         }
         for (int j = 1; j <= m; j++) {
-            if (prime[j] > v[i] || prime[j] > n / i) break;
-            v[i * prime[j]] = prime[j];
+            if (prime[j] * i > n) break;
+            vis[i * prime[j]] = 1;
+            if (i % prime[j] == 0) break;  // 保证每个数只会被它的最小质因子筛去
         }
     }
-    for (int i = 1; i <= m; i++) cout << prime[i] << endl;
 }
 ```

@@ -2,7 +2,7 @@
 title: '[BZOJ1101]-Zap'
 date: 2018-08-01 20:56:40
 tags: 
-    - 莫比乌斯反演
+    - 莫比乌斯
 mathjax: true
 ---
 
