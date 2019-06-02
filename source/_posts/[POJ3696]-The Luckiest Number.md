@@ -2,7 +2,7 @@
 title: '[POJ3696]-The Luckiest Number'
 date: 2018-07-25 15:50:40
 tags: 
-    - 同余
+    - 同余方程
 mathjax: true
 ---
 
