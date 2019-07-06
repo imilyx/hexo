@@ -1,6 +1,6 @@
 ---
 title: 'Codeforces Round 572 Div2'
-date: 2019-07-05 19:30:40
+date: 2019-07-05 21:30:40
 tags: 
     - 比赛
 mathjax: true
