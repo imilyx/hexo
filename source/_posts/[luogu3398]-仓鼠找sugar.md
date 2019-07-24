@@ -1,5 +1,5 @@
 ---
-title: '[luogu3398]-仓鼠找sugar'
+title: '[LG3398]-仓鼠找sugar'
 date: 2019-03-03 23:15:40
 tags: 
     - LCA

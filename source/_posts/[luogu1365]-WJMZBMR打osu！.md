@@ -1,5 +1,5 @@
 ---
-title: '[luogu1365]-WJMZBMR打osu!'
+title: '[LG1365]-WJMZBMR打osu!'
 date: 2018-11-01 22:58:40
 tags: 
     - 概率与期望

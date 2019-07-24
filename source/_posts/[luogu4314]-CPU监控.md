@@ -1,5 +1,5 @@
 ---
-title: '[luogu4314]-CPU监控'
+title: '[LG4314]-CPU监控'
 date: 2019-02-22 18:15:40
 tags: 
     - 线段树
