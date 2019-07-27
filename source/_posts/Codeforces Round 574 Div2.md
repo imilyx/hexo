@@ -254,3 +254,79 @@ int main() {
     return 0;
 }
 ```
+
+### F. Geometers Anonymous Club
+-----
+
+补了 F！
+
+题意就是让你对一个区间内的凸包进行闵可夫斯基求和。
+
+有一个闵可夫斯基求和的定理，就是 n 个方向不同的向量形成的凸包有 n 个顶点。
+
+离线处理，用树状数组维护。注意，多点一线这种情况要处理！见代码。
+
+code :
+``` c++
+#include <bits/stdc++.h>
+#define rep(i, x, y) for (int i = x; i <= y; i++)
+#define lowbit(x) ((x) & (-(x)))
+using namespace std;
+
+const int N = 5e5 + 10, inf = 0x3f3f3f3f;
+typedef pair<int, int> pii;
+int n, q, l[N], r[N], C[N], ans[N];
+map<pii, int> mp;
+vector<pii> ve, tmp, query;
+vector<int> t[N];
+
+pii get_dir(int x, int y) {  // 处理多点一线的情况
+    int gcd = __gcd(abs(x), abs(y));
+    if (gcd) x /= gcd, y /= gcd;
+    return make_pair(x, y);
+}
+
+void add(int x, int val) {
+    for (; x <= N; x += lowbit(x)) C[x] += val;
+}
+
+int get_sum(int x) {
+    int ret = 0;
+    for (; x; x -= lowbit(x)) ret += C[x];
+    return ret;
+}
+
+int main() {
+    cin >> n;
+    ve.push_back(make_pair(-1, -1));
+    rep(i, 1, n) {
+        int x; scanf("%d", &x);
+        rep(j, 1, x) {
+            int a, b; scanf("%d%d", &a, &b);
+            tmp.push_back(make_pair(a, b));
+        }
+        l[i] = ve.size();
+        for (int j = 0; j < tmp.size(); j++)
+            ve.push_back(get_dir(tmp[j].first - tmp[(j + 1) % tmp.size()].first, tmp[j].second - tmp[(j + 1) % tmp.size()].second));
+        tmp.clear();
+        r[i] = ve.size() - 1;
+    }
+
+    scanf("%d", &q);
+    rep(i, 1, q) {
+        int a, b; scanf("%d%d", &a, &b);
+        pii temp = make_pair(l[a], r[b]);
+        query.push_back(temp);
+        t[temp.second].push_back(i - 1);
+    }
+    for (int i = 1; i < ve.size(); i++) {
+        if (mp.count(ve[i])) add(mp[ve[i]], -1);
+        add(i, 1);
+        mp[ve[i]] = i;
+        for (int j = 0; j < t[i].size(); j++)
+            ans[t[i][j]] = get_sum(query[t[i][j]].second) - get_sum(query[t[i][j]].first - 1);
+    }
+    rep(i, 0, q - 1) printf("%d\n", ans[i]);
+    return 0;
+}
+```
