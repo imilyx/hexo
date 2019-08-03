@@ -2,7 +2,7 @@
 title: '[19暑假集训]-染色Color'
 date: 2019-08-03 23:30:11
 tags:
-    - 最短路
+    - 数据结构
 mathjax: true
 ---
 
