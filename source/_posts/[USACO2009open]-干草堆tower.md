@@ -1,5 +1,5 @@
 ---
-title: '[USACO2009open]-干草堆tower.md'
+title: '[USACO2009open]-干草堆tower'
 date: 2019-09-25 23:30:11
 tags:
     - 单调队列
