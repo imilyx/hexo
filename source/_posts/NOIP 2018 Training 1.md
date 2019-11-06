@@ -113,6 +113,8 @@ https://vjudge.net/problem/AtCoder-3857
 用 bitset 来表示每一个数能否被表示成 n 个数中任意个数的和的形式，能，1；不能，0。
 例如 n = 2 ，两个数分别为 3 和 5，那么这个 bitset 中第 3 位和第 5 位为 1，第 8 位也为 1，而第 8 位赋值方法是 3 << 5。
 
+中位数在 $\lceil \frac{\sum\limits_{i=1}^nA_i}{2} \rceil$ 后面一点点的证明：[传送门](https://blog.csdn.net/zzzzone/article/details/79115522)
+
 CODE：
 ``` c++
 #include <bits/stdc++.h>
