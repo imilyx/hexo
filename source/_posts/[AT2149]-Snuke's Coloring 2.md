@@ -1,5 +1,5 @@
 ---
-title: '[AT2149]-Snuke's Coloring 2'
+title: "[AT2149]-Snuke's Coloring 2"
 date: 2020-01-13 20:15:40
 tags: 
     - 线段树
