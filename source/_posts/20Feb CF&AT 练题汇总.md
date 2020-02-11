@@ -201,3 +201,48 @@ int main() {
     return 0;
 }
 ```
+
+## [AT2301]-Solitaire
+-----
+
+取数前肯定是 V 字形的（1 是谷底）
+
+* 一个取数序列，只要存在一种 V 字形的安排，就是合法的
+
+[这个大佬讲的比我清楚](https://blog.csdn.net/weixin_30820077/article/details/96464019)
+
+code :
+``` c++
+#include <bits/stdc++.h>
+#define rep(i, x, y) for (int i = x; i <= y; i++)
+#define per(i, x, y) for (int i = x; i >= y; i--)
+using namespace std;
+
+const int mod = 1e9 + 7, N = 2e3 + 10;
+typedef long long ll;
+int n, K, f[N][N], sum, ans;
+
+int main() {
+    cin >> n >> K;
+    per(i, n, 2) f[1][i] = 1;
+    rep(i, 1, K - 2) {
+        sum = f[i][n - i + 1];
+        per(j, n - i, 2) {
+            sum = (sum + f[i][j]) % mod;
+            f[i + 1][j] = (f[i + 1][j] + sum) % mod;
+        }
+    }
+    rep(i, 2, n - (K - 1) + 1) ans = (ans + f[K - 1][i]) % mod;
+    if (K == 1) ans = 1;
+    if (n - K - 1 > 0)
+        rep(i, 1, n - K - 1) ans = (ans << 1) % mod;
+        
+    printf("%d\n", ans);
+    return 0;
+}
+```
+
+## [AT2005]-Sequential operations on Sequence
+-----
+
+[见此篇]()
