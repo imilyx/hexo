@@ -245,4 +245,4 @@ int main() {
 ## [AT2005]-Sequential operations on Sequence
 -----
 
-[见此篇]()
+[见此篇](https://imilyx.github.io/2020/02/11/[AT2005]-Sequential%20operations%20on%20Sequence/)
