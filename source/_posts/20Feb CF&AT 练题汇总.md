@@ -246,3 +246,198 @@ int main() {
 -----
 
 [见此篇](https://imilyx.github.io/2020/02/11/[AT2005]-Sequential%20operations%20on%20Sequence/)
+
+## [AT2043]-AND Grid
+-----
+
+构造题，以前做到过！很神仙的思路，想不到qwq 构造形状如嵌在一起的手指一般
+
+## [AT2046]-Namori
+-----
+
+简介（雾）：一道绝妙的转化好题
+
+**树 是 二 分 图！！！**
+
+[这个大佬就写的到位，偶环部分写得特别好](https://www.luogu.com.cn/blog/flashblog/solution-at2046)
+
+然后来谈谈自己的理解：
+
+1. 这种转化下，将相邻两个同色同时反转 等价于 将相邻两个是否有硬币情况交换一下
+
+2. 也许看到这种反转题第一步就应该按照深度什么的来个黑白反转。。？这样才能进展qwq。。**模型转化靠做题练**
+
+3. 奇环和偶环要分开考虑（偶环是二分图，奇环不是）**奇环中断掉的边只有分摊部分转移、加快运输的作用**
+
+code :
+``` c++
+#include <bits/stdc++.h>
+#define rep(i, x, y) for (int i = x; i <= y; i++)
+using namespace std;
+
+const int N = 2e5 + 10;
+int n, m, ans, stx, sty, fx, fy;
+int to[N << 1], nxt[N << 1], lnk[N], cnt;
+int dep[N], fa[N], s[N], a[N], top;
+
+void add(int x, int y) {
+    to[++cnt] = y, nxt[cnt] = lnk[x], lnk[x] = cnt;
+}
+
+int getfa(int x) {
+    return fa[x] == x ? x : fa[x] = getfa(fa[x]);
+}
+
+void dfs(int x, int f, int val) {
+    dep[x] = dep[f] + 1;
+    fa[x] = f;
+    s[x] = val;
+    for (int i = lnk[x], y; i; i = nxt[i])
+        if ((y = to[i]) != f)
+            dfs(y, x, -val), s[x] += s[y];
+}
+
+int main() {
+    cin >> n >> m;
+    rep(i, 1, n) fa[i] = i;
+    stx = sty = 1;
+    rep(i, 1, m) {
+        int x, y; scanf("%d%d", &x, &y);
+        if ((fx = getfa(x)) != (fy = getfa(y))) fa[fx] = fy;
+        else { stx = x, sty = y; continue; }  // 环上边，给它断掉！
+        add(x, y), add(y, x);
+    }
+    dfs(stx, 0, 1);
+    if (n == m) {
+        for (int i = sty; i; i = fa[i]) a[++top] = s[i];
+        if ((dep[stx] - dep[sty]) & 1) {  // 偶环
+            if (s[stx]) return puts("-1"), 0;
+            sort(a + 1, a + top + 1);
+            for (int i = sty; i; i = fa[i]) s[i] -= a[top >> 1];
+        } else {  // 奇环
+            if (s[stx] & 1) return puts("-1"), 0;
+            for (int i = sty; i; i = fa[i]) s[i] -= s[stx] >> 1;  // 环上的树们只管把多余的往外输送就好了，主要是环上边决定运输方向！
+        }
+    } else if (s[stx]) return puts("-1"), 0;
+    rep(i, 1, n) ans += abs(s[i]);
+    printf("%d\n", ans);
+    return 0;
+}
+```
+
+## [AT2063]-Sugigma: The Showdown
+-----
+
+我哥解说太赞了！！！超好评
+
+在一棵树上，先手不被抓到的唯一情况是：红树上存在一条边 x->y, 蓝树上 x 到 y 的距离 > 2。
+
+接下来说明为什么除此之外都会被抓到。
+
+首先，在一棵**普通**树上，后手可以把先手往角落里逼（因为没有环），先手挂了。
+
+回到这题，“蓝树上 x 到 y 的距离 <= 2”，首先不用考虑距离 = 1 的情况（这就是普通树的情况）
+
+现在距离 = 2，后手站在两条蓝边的中间节点上，先手在 x 或 y 上，显然如瓮中捉鳖，先手挂了。
+
+因此先手要逃离这个结构，但一逃离就是距离 = 1 的情况，还是会挂。。
+
+我哥讲的真好，就这个道理！
+
+所以时间就是两倍的后手步数，先手只要找到离后手最远且他能比后手抢先到达的点呆着就好。。。
+
+## [AT2064]-Many Easy Problems
+-----
+
+一道非模板的 NTT~ 可以想到算每个点在多少联通块里出现，但这显然不好算，正难则反，继而转为算每个点在多少联通块里不出现
+
+[挂一个大佬博客，推的式子就是这个亚子](https://m-sea-blog.com/archives/4576/)
+
+然后感触比较深的就是：设 F = f ✖️ g， {\sum_{i, 0, n} f(n - i)·g(i)} = F(n) ！
+
+code :
+``` c++
+/*
+感慨：卷积原来是这么用的啊..
+*/
+#include <bits/stdc++.h>
+#define rep(i, x, y) for (int i = x; i <= y; i++)
+using namespace std;
+
+const int mod = 924844033, N = 4e5 + 10;
+typedef long long ll;
+int n, lim = 1, l;
+int to[N << 1], nxt[N << 1], lnk[N], ecnt;
+int sz[N], cnt[N], r[N << 1];
+ll f[N], g[N], fac[N], inv[N];
+
+void add(int x, int y) {
+    to[++ecnt] = y, nxt[ecnt] = lnk[x], lnk[x] = ecnt;
+}
+
+ll quick_pow(ll a, ll b) {
+    ll ret = 1;
+    for (; b; b >>= 1) {
+        if (b & 1) ret = ret * a % mod;
+        a = a * a % mod;
+    } return ret;
+}
+
+ll C(ll n, ll m) {
+    return 1ll * fac[n] * inv[m] % mod * inv[n - m] % mod;
+}
+
+void pre() {
+    fac[0] = inv[0] = 1;
+    rep(i, 1, n) fac[i] = fac[i - 1] * i % mod;
+    inv[n] = quick_pow(fac[n], mod - 2);
+    for (int i = n; i >= 1; i--) inv[i - 1] = inv[i] * i % mod;
+}
+
+void dfs(int x, int fa) {
+    sz[x] = 1;
+    for (int i = lnk[x], y; i; i = nxt[i])
+        if ((y = to[i]) != fa)
+            dfs(y, x), sz[x] += sz[y], cnt[sz[y]]++;
+    cnt[n - sz[x]]++;
+}
+
+void NTT(ll *a, int op) {
+    rep(i, 0, lim - 1) if (i < r[i]) swap(a[i], a[r[i]]);
+    for (int mid = 1; mid < lim; mid <<= 1) {
+        ll W = quick_pow(op == 1 ? 5 : 554906420, (mod - 1) / (mid << 1));
+        for (int j = 0; j < lim; j += (mid << 1)) {
+            ll w = 1;
+            for (int k = 0; k < mid; k++, w = w * W % mod) {
+                ll x = a[j + k], y = w * a[j + k + mid] % mod;
+                a[j + k] = (x + y) % mod, a[j + k + mid] = (x - y + mod) % mod;
+            }
+        }
+    }
+    if (op == -1) {
+        ll x = quick_pow(lim, mod - 2);
+        rep(i, 0, lim - 1) a[i] = a[i] * x % mod;
+    }
+}
+
+int main() {
+    cin >> n;
+    pre();
+    rep(i, 1, n - 1) {
+        int x, y; scanf("%d%d", &x, &y);
+        add(x, y), add(y, x);
+    }
+    dfs(1, 0);
+    rep(i, 1, n) f[i] = 1ll * cnt[i] * fac[i] % mod;
+    reverse(f, f + n + 1);
+    rep(i, 0, n) g[i] = inv[i];
+    while (lim <= n * 2) lim <<= 1, l++;
+    rep(i, 0, lim - 1) r[i] = (r[i >> 1] >> 1) | ((i & 1) << (l - 1));
+    NTT(f, 1), NTT(g, 1);
+    rep(i, 0, lim) f[i] = (f[i] * g[i]) % mod;
+    NTT(f, -1);
+    rep(i, 1, n) printf("%lld\n", (n * C(n, i) % mod - inv[i] * f[n - i] % mod + mod) % mod);
+    return 0;
+}
+```
+
