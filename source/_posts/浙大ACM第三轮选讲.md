@@ -16,6 +16,8 @@ mathjax: true
 
 upd: 还有另一种[神仙做法](https://www.cnblogs.com/Flying2018/p/13356497.html)
 
+upd: 还有一种 [矩阵 + 倍增](https://www.cnblogs.com/Wendigo/p/13357673.html)
+
 [7.22 题解](https://www.kdocs.cn/l/shvH8qsctES4?f=201)
 
 ## [7.22 E]
