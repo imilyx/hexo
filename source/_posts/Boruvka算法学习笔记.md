@@ -138,6 +138,8 @@ $O(2^{18} * 18 * logn)$
 
 总之就是走 保证存在合法解的最优路径！
 
+（还有一个完全不同、而且特别简单易懂的[好办法](http://vfleaking.blog.uoj.ac/blog/1244)，详见算法七）
+
 ``` c++
 #include <bits/stdc++.h>
 #define rep(i, x, y) for (int i = x; i <= y; i++)
