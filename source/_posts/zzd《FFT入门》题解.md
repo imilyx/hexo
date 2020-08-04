@@ -11,7 +11,7 @@ mathjax: true
 
 我们发现匹配的字符对**下标之差是定值**，翻转其中一个串以后就变成了，匹配的字符对**下标之和是定值**，这是满足卷积形式的。（好妙啊QAQ，卷积形式真的万能
 
-## $\mathcal{[BZOJ4503]}$
+## ${[BZOJ4503]}$
 
 不能直接 kmp 啊，通配符的 fail 指针不好定。考虑卷积。
 
@@ -23,7 +23,7 @@ mathjax: true
 
 这个东西拆开来，做三次 FFT。
 
-## $\mathcal{[CF528D]}$
+## ${[CF528D]}$
 
 按照上一题的套路，我们设 $f[i, c]$ 表示 $[A 的位置 i 匹配字符 c]$，$g[i, c]$ 表示 $[B 的位置 i == c]$。相减之后做平方，这个东西展开太困难了，而且要做很多次 FFT，常数爆炸，考虑别的方法。
 
@@ -36,7 +36,7 @@ mathjax: true
 
 常用技巧是翻转和更换求和指标。
 
-## $\mathcal{[ZJOI2014]-力}$
+## ${[ZJOI2014]-力}$
 
 自己还推了一部分，hh
 
@@ -57,7 +57,7 @@ $$\sum\limits_{j = 0}^{m - i} F(j) \times G^r(m - i - j)$$
 # **套路3. 背包问题相关**
 -----
 
-## $\mathcal{[CF286E]-Ladies'\ Shop}$
+## ${[CF286E]-Ladies'\ Shop}$
 
 比较自然的想法，f[a[i]] = 1，f[0] = 1，f 与自己做卷积，做最多 m 次就得到了所有能表示的数。但这样是 O(m log^2 m)的。
 
@@ -70,33 +70,91 @@ $$\sum\limits_{j = 0}^{m - i} F(j) \times G^r(m - i - j)$$
 
 （好难啊 QAQ 我没有脑子）
 
-## $\mathcal{[Lydsy1704月赛]-二元运算}$
+## ${[Lydsy1704月赛]-二元运算}$
 
 先不考虑括号里的限制。加法可以直接算，减法要变一下：
 
-$$ans_j = \sum\limits_{i = j}^n a_i * b_{i - j}$$
+$$ans_k = \sum\limits_{i = k}^n a_i \times b_{i - k}$$
 
-$$ans_j = \sum\limits_{i = 0}^{n - j} a_{i + j} * b_i$$
+$$ans_k = \sum\limits_{i = 0}^{n - k} a_{i + k} \times b_i$$
 
-翻转
+翻转，再将 ans 下标加 n，凑一个卷积形式：
 
-$$ans_j = \sum\limits_{i = 0}^{n - j} a_{i + j} * b^r_{n - j - i}$$
+$$ans_{n + k} = \sum\limits_{i = 0}^{n - k}a_{i + k} \times b_{n - i}^r$$
 
-考虑括号里的限制，容易发现在值域上，左区间对右区间一定有贡献，于是想到**分治值域**。
+考虑括号里的限制，容易发现在值域上，左区间对右区间一定有贡献，于是想到**分治值域**。具体来说，对于每个数值区间 [l, r]：
+
+* $x = y$: 贡献给 $0$
+* $x < y$: $a[l, mid]$ 卷 $b[mid + 1, r]$
+* $x > y$: $a[mid + 1, r]$ 卷 $b[l, mid]$
 
 （我今天才知道在递归过程中计算一个子问题对另一个子问题的贡献的分治就叫 CDQ 分治？？？）
 
-## $\mathcal{[CF553E]-Kyoya\ and\ Train}$
+## ${[CF553E]-Kyoya\ and\ Train}$
+
+乍一看更像是 dp 题，于是考虑 dp：$f[i, j]$ 表示到 $i$ 位置耗时 $j$ 的最小期望代价，$f[x, t] = min\{c(x, y) + f[y, t + k] \times P_{e, k}\}$，其中 P 表示经过 e 边耗时 k 的概率。
+
+注意到后面那坨东西可以翻转变成卷积形式，然后这玩意就是分治 FFT 啦，分治时间，对于 $[l, r]$ 先做 $[mid, r]$ 再做 $[l, mid)$。复杂度 $O(mTlog^2T)$.
 
 # **杂题**
 -----
 
-## $\mathcal{[BZOJ3160]-万径人踪灭}$
+## ${[BZOJ3160]-万径人踪灭}$
 
-## $\mathcal{[Cerc2015]-Frightful\ Formula}$
+我们先忽略条件 2，最后减去条件 2 的就好了（用 manacher 算）
 
-## $\mathcal{[Hnoi2017]-礼物}$
+按照朴素的解法，展开做多次 FFT 也是可以的，然而还有更简便的方法。考虑**只有 a 和 b**，分开来做再同一位置的相乘，正确性显然。
 
-## $\mathcal{[CF958F3]-Lightsabers(hard)}$
+## ${[Cerc2015]-Frightful\ Formula}$
 
-## $\mathcal{[CF623E]-Transforming\ Sequence}$
+首先假装已经知道这是 FFT 题！然后快乐推柿子。显然答案只分为 $(i, 1)/(1, i)$ 初始值的贡献 和 $(i, j)$ 额外加上的 $c$ 的贡献。
+
+$(i, 1)/(1, i)$:
+
+$$\sum\limits_{i = 1}^n C(n - i + n - 1, n - i)\times  a^{n - i} b^{n - 1}$$
+
+$(i, j)$:
+
+$$\sum\limits_{i = 2}^n \sum\limits_{j = 2}^n C(n - i + n - j, n - i) \times a^{n - i} b^{n - j} c$$
+
+设 $A_i = \frac{a^{n - i}}{(n - i)!}$, $B_i = \frac{b^{n - i}}{(n - i)!}$:
+
+$$c\sum\limits_{i = 2}^n \sum\limits_{j = 2}^n (2n - i - j)! \times A_iB_j$$
+
+枚举 i + j:
+
+$$c\sum\limits_{i = 4}^{2n} (2n - i)! \sum\limits_{j = 2}^{i - 2} A_jB_{i - j}$$
+
+这就是卷积形式了。
+
+## ${[Hnoi2017]-礼物}$
+
+我们设得到序列为 a 和 b，设给 a 每一位加 c
+
+$$ans = \sum (a_i + c - b_i)^2$$
+
+$$ans = \sum a_i^2 + \sum b_i^2 + n \times c^2 + 2c \times (\sum a_i - \sum b_i) - 2 \sum a_ib_i$$
+
+和 c 有关的项可以枚举或用二次函数求极值，最后一项用卷积求，考虑怎么搞，显然将 a 翻转后复制一份就好啦。
+
+## ${[CF958F3]-Lightsabers(hard)}$
+
+把每种颜色能选的 01 生成函数乘起来，朴素做法会 TLE，考虑**启发式合并**，堆 + vector 维护。$O(nlog^2n)$
+
+（分治也能做！
+
+## ${[CF623E]-Transforming\ Sequence}$
+
+容易发现跟数值具体大小没有关系，关键是每次都有**新的二进制位被填上**。
+
+小数据的话可以 dp，$f[i, j]$ 表示前 $i$ 个数有 $j$ 个二进制位为 $1$，转移 $f[i, j] = \sum\limits_{k = 0}^{j - 1} f[i - 1, k] \times 2^k \times C(j, k)$，其中 $2^k$ 表示原来已有的可放可不放。
+
+考虑优化：
+
+$$f[i, j] = j! \sum\limits_k \frac{f[i - 1, k] \times 2^k}{k!} \times \frac{1}{(j - k)!}$$
+
+这样是 $O(n^2 log n)$ 的，然后我就想不出了。。但还能优化！！考虑到这样一次一次转移太慢了，我们**加大转移的步长**，也就是说一坨一坨转移（这个真想不到）：
+
+$$f[x + y, i] = \sum\limits_{j = 0}^i 2^{jy} \times C(i, j) \times f_{x, j} \times f_{y, i - j}$$
+
+直接 FFT 优化就好了（迷惑）
