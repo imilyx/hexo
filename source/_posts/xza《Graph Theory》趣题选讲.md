@@ -17,7 +17,7 @@ mathjax: true
 
 背包合并。
 
-## [$CF547D-Mike and Fish$](https://codeforces.com/problemset/problem/547/D)
+## [$CF547D-Mike\ and\ Fish$](https://codeforces.com/problemset/problem/547/D)
 -----
 
 [题解](https://blog.csdn.net/PoPoQQQ/article/details/46125833)
