@@ -145,16 +145,14 @@ $$ans = \sum a_i^2 + \sum b_i^2 + n \times c^2 + 2c \times (\sum a_i - \sum b_i)
 
 ## ${[CF623E]-Transforming\ Sequence}$
 
+显然 $n > k$ 的时候无解。
+
 容易发现跟数值具体大小没有关系，关键是每次都有**新的二进制位被填上**。
 
 小数据的话可以 dp，$f[i, j]$ 表示前 $i$ 个数有 $j$ 个二进制位为 $1$，转移 $f[i, j] = \sum\limits_{k = 0}^{j - 1} f[i - 1, k] \times 2^k \times C(j, k)$，其中 $2^k$ 表示原来已有的可放可不放。
 
 考虑优化：
 
-$$f[i, j] = j! \sum\limits_k \frac{f[i - 1, k] \times 2^k}{k!} \times \frac{1}{(j - k)!}$$
+$$\frac{f[i, j]}{j!} = \sum\limits_k \frac{f[i - 1, k] \times 2^k}{k!} \times \frac{1}{(j - k)!}$$
 
-这样是 $O(n^2 log n)$ 的，然后我就想不出了。。但还能优化！！考虑到这样一次一次转移太慢了，我们**加大转移的步长**，也就是说一坨一坨转移（这个真想不到）：
-
-$$f[x + y, i] = \sum\limits_{j = 0}^i 2^{jy} \times C(i, j) \times f_{x, j} \times f_{y, i - j}$$
-
-直接 FFT 优化就好了（迷惑）
+这样是 $O(n^2 log n)$ 的，然后我就想不出了。。但还能优化！！考虑到这样一次一次转移太慢了，我们**加大转移的步长**，倍增，合并每段的 dp 值，相当于 dp[n & (2 ^ 0)] 卷 dp[n & (2 ^ 1)] ... 卷dp[n & (2 ^ 最高位)]，这样就能在 $O(k log^2 k)$ 的时间复杂度内求出了。
