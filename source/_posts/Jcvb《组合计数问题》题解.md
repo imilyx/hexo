@@ -4,6 +4,7 @@ date: 2020-07-30 18:25:40
 tags:
     - 容斥原理
     - 计数
+mathjax: true
 ---
 
 * 组合数、stirling数
