@@ -12,8 +12,7 @@ mathjax: true
 
 以前好像碰到过类似 dp 套路？离散化，$f[i, j]$ 表示第 $j$ 小的数留到了 $i$ 节点的概率。转移：
 
-$$f[i, j] = f[ls, j] * (p[i] * \sum\limits_{k = 1}^{j - 1} f[rs, k] + (1 - p[i]) * \sum\limits_{k = j + 1}^m f[rs, k])
-             + f[rs, j] * (p[i] * \sum\limits_{k = 1}^{j - 1} f[ls, k] + (1 - p[i]) * \sum\limits_{k = j + 1}^m f[ls, k])$$
+$$f[i, j] = f[ls, j] * (p[i] * \sum\limits_{k = 1}^{j - 1} f[rs, k] + (1 - p[i]) * \sum\limits_{k = j + 1}^m f[rs, k]) + f[rs, j] * (p[i] * \sum\limits_{k = 1}^{j - 1} f[ls, k] + (1 - p[i]) * \sum\limits_{k = j + 1}^m f[ls, k])$$
 
 发现每个叶子结点的权值都不同，且都只会贡献一次，**想到线段树合并**（注意要合并的东西必须是 $O(n)$ 及以下级别的，不然上不了线段树合并）。然后发现线段树可以很好地维护区间和、区间乘标记等东西！
 
