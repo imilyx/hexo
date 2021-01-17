@@ -1,5 +1,5 @@
 ---
-title: 'UOJ Long Round #1'
+title: 'UOJ Long Round 1'
 date: 2021-01-05 19:30:40
 tags: 
     - 比赛
