@@ -423,10 +423,24 @@ $(x', y')$ 在以 $A(x, y)$ 为原点的 $45$ ~ $90$ 区域里，当且仅当 $y
 
 ### [诸神眷顾的幻想乡](https://www.luogu.com.cn/problem/P3346)
 
-
+模板题，从每个叶子出发建 Trie 树，在 Trie 树上跑 SAM，插入新点时看一下之前有没有。
 
 ### [找相同字符](https://www.luogu.com.cn/problem/P3181)
 
 ### [$CF666E-Forensic\ Examination$](https://www.luogu.com.cn/problem/CF666E)
 
+建广义 SAM，预处理文本串每个字符在广义 SAM 中所对的位置，查询文本串 [pl, pr] 时就从 pr 所对的位置一只向上跳跳跳，跳到最后一个长度不小于 pr - pl + 1 的位置。广义 SAM 上线段树合并“来自哪个串”。
+
+需要注意，因为是保留每个节点的线段树信息，线段树合并要把合并后的信息放到**新建节点**上。
+
 ### [$CF235C-Cyclical\ Quest$](https://www.luogu.com.cn/problem/CF235C)
+
+---
+
+一月到尾巴了，考完期末考了！
+
+来学竞赛图。
+
+### [世界是个动物园](https://uoj.ac/problem/451)
+
+写在「【学习笔记】竞赛图」里了。
