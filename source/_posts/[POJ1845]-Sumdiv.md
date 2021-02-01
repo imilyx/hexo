@@ -5,6 +5,7 @@ tags:
     - 分治
     - 乘法逆元
 mathjax: true
+hidden: true
 ---
 
 https://vjudge.net/problem/POJ-1845

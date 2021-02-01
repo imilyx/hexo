@@ -10,7 +10,7 @@ https://vjudge.net/problem/HYSBZ-1101
 
 题意略。
 
-求 $gcd(x, y) = d$, 相当于求 $gcd(x / d, y / d) = 1$ 的个数。相当于求 $1 \leq x \leq a / d$, $1 \leq y \leq b / d$ 中 x, y 互质对数。
+求 $gcd(x, y) = d$, 相当于求 $gcd(x / d, y / d) = 1$ 的个数。相当于求 $1 \leq x \leq a / d$, $1 \leq y \leq b / d$ 中 $x$, $y$ 互质对数。
 
 令 $n = \lfloor a / d \rfloor$, $m = \lfloor b / d \rfloor$.
 
@@ -21,20 +21,20 @@ $$\sum\limits_{i = 1}^a \sum\limits_{j = 1}^b [gcd(i, j) == d]$$
 $$= \sum\limits_{i = 1}^n \sum\limits_{j = 1}^m [gcd(i, j) == 1]$$
 
 现在必须提到一个莫比乌斯函数的性质：
-当 n > 1 时，
-$\sum\limits_{d | n} \mu(d) = 0$；n = 1 时，$\sum\limits_{d | n} \mu(d) = 1$。
+当 $n > 1$ 时，
+$\sum\limits_{d | n} \mu(d) = 0$；$n = 1$ 时，$\sum\limits_{d | n} \mu(d) = 1$。
 
 证明：
 
 $n = 1$ 时显然。
 
-$n > 1$ 时，设 $n = p_1^{c_1} * p_2^{c_2} * p_3^{c_3} * ... * p_k^{c_k}$ ，d 有其中一部分。
+$n > 1$ 时，设 $n = p_1^{c_1} * p_2^{c_2} * p_3^{c_3} * ... * p_k^{c_k}$ ，$d$ 有其中一部分。
 
-显然根据莫比乌斯函数的定义，d 的每个质因子指数为 1 才有贡献，否则 $\mu(d) = 0$。
+显然根据莫比乌斯函数的定义，$d$ 的每个质因子指数为 $1$ 才有贡献，否则 $\mu(d) = 0$。
 
-那么设 d 中有 r 个质因子。
+那么设 $d$ 中有 $r$ 个质因子。
 
-$\mu(d) = (-1)^r$ ，这样的 d 有 $C_m^r$ 个。
+$\mu(d) = (-1)^r$ ，这样的 $d$ 有 $C_m^r$ 个。
 
 所以
 

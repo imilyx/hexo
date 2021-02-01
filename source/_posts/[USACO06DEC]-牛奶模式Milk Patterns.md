@@ -4,6 +4,7 @@ date: 2019-08-17 23:50:11
 tags:
     - 后缀数组
 mathjax: true
+hidden: true
 ---
 
 [传送门](https://www.luogu.org/problem/P2852)

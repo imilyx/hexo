@@ -4,6 +4,7 @@ date: 2018-08-17 22:10:40
 tags: 
     - 贪心
 mathjax: true
+hidden: true
 ---
 
 [题目链接](http://codevs.cn/problem/2485/)

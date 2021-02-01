@@ -4,6 +4,7 @@ date: 2019-02-22 17:58:40
 tags: 
     - 缩点
 mathjax: true
+hidden: true
 ---
 
 [题目链接](https://www.luogu.org/problemnew/show/P3387)

@@ -5,6 +5,7 @@ tags:
     - AC自动机
     - 矩阵乘法
 mathjax: true
+hidden: true
 ---
 
 [传送门](https://vjudge.net/problem/POJ-2778)

@@ -4,6 +4,7 @@ date: 2018-08-27 22:50:40
 tags: 
     - 广度搜索
 mathjax: true
+hidden: true
 ---
 
 [题目链接](https://vjudge.net/problem/POJ-3322)

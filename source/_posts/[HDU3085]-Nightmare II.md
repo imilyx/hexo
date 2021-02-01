@@ -4,6 +4,7 @@ date: 2018-08-29 20:15:40
 tags: 
     - 广度搜索
 mathjax: true
+hidden: true
 ---
 
 [题目链接](https://vjudge.net/problem/HDU-3085)

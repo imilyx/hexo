@@ -5,9 +5,10 @@ tags:
     - 容斥原理
     - 排列组合
 mathjax: true
+hidden: true
 ---
 
-https://vjudge.net/problem/CodeForces-451E
+[传送门](https://vjudge.net/problem/CodeForces-451E)
 
 题意：有 n 个盒子，第 i 个盒子里有 $A_i$ 枝花，同一个盒子内的花颜色相同，不同盒子内的花颜色不同。要从这些盒子里选出 m 朵花组成一束，求方案数。若两束花每种颜色的花的数量都相同，即可认为是相同的方案。输出答案对 $10^9 + 7$ 取模后的结果。$1 \leq n \leq 20$, $1 \leq m \leq 10^{14}$, $p \leq A_i \leq 10^{12}$.
 

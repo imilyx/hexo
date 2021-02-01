@@ -4,6 +4,7 @@ date: 2018-05-19 20:00:40
 tags: 
     - 背包
 mathjax: true
+hidden: true
 ---
 
 https://vjudge.net/problem/POJ-1015

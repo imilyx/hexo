@@ -3,6 +3,7 @@ title: '[POJ1961]-Period'
 date: 2018-08-22 20:42:40
 tags:
     - KMP
+hidden: true
 ---
 
 [题目链接](https://vjudge.net/problem/POJ-1961)

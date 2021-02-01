@@ -4,6 +4,7 @@ date: 2019-04-16 23:10:40
 tags: 
     - 最小生成树
 mathjax: true
+hidden: true
 ---
 
 [题目链接](https://www.luogu.org/problemnew/show/P1265)

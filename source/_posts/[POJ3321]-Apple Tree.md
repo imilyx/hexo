@@ -4,6 +4,7 @@ date: 2019-02-13 19:20:40
 tags: 
     - dfs序
 mathjax: true
+hidden: true
 ---
 
 [题目链接](https://vjudge.net/problem/POJ-3321)

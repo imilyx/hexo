@@ -4,6 +4,7 @@ date: 2018-09-18 23:21:40
 tags: 
     - 贪心
 mathjax: true
+hidden: true
 ---
 
 [题目链接](http://codeforces.com/problemset/problem/913/C)

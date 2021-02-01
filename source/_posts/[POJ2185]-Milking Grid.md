@@ -4,6 +4,7 @@ date: 2018-08-23 16:40:40
 tags:
     - KMP
 mathjax: true
+hidden: true
 ---
 
 [题目链接](https://vjudge.net/problem/POJ-2185)

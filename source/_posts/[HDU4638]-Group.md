@@ -4,6 +4,7 @@ date: 2019-02-05 00:30:40
 tags: 
     - 莫队
 mathjax: true
+hidden: true
 ---
 
 [题目链接](https://vjudge.net/problem/HDU-4638)

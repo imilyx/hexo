@@ -3,6 +3,7 @@ title: '[SDOI2009]-HH去散步'
 date: 2019-07-24 14:45:40
 tags:
 	- 矩阵乘法
+hidden: true
 ---
 
 [传送门](https://www.lydsy.com/JudgeOnline/problem.php?id=1875)

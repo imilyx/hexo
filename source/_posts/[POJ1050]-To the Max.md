@@ -4,6 +4,7 @@ date: 2018-08-22 14:50:40
 tags: 
     - 贪心
 mathjax: true
+hidden: true
 ---
 
 [题目链接](https://vjudge.net/problem/POJ-1050)

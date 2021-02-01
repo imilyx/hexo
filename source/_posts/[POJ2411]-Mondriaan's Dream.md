@@ -3,6 +3,7 @@ title: "[POJ2411]-Mondriaan's Dream"
 date: 2018-08-09 11:41:40
 tags:
     - 状压动规
+hidden: true
 ---
 
 https://vjudge.net/problem/POJ-2411

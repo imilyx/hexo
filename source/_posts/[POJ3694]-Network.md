@@ -4,6 +4,7 @@ date: 2019-03-03 23:10:40
 tags: 
     - 图的连通
 mathjax: true
+hidden: true
 ---
 
 [题目链接](https://vjudge.net/problem/POJ-3694)

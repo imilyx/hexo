@@ -5,9 +5,10 @@ tags:
     - 计数DP
     - 排列组合
 mathjax: true
+hidden: true
 ---
 
-https://vjudge.net/problem/CodeForces-559C
+[传送门](https://vjudge.net/problem/CodeForces-559C)
 
 题意：给定一个 $H * W$ 的棋盘，棋盘上只有 N 个格子是黑色的，其余都是白色的。在棋盘左上角有一个卒，每一步可以向下或向右移动一格，并且不能移动到黑色格子中，求这个卒从左上角移到右下角，一共有多少种可能的路线。
 $1 \leq H, W \leq 10^5$, $1 \leq N \leq 2000$. 答案对 1e9 + 7 取模。

@@ -4,9 +4,10 @@ date: 2018-06-16 22:10:40
 tags: 
     - 数学
 mathjax: true
+hidden: true
 ---
 
-https://www.lydsy.com/JudgeOnline/problem.php?id=1053
+[传送门](https://www.lydsy.com/JudgeOnline/problem.php?id=1053)
 
 题意：对于任何正整数 x，其约数的个数记作 $g(x)$ 。例如 $g(1)=1$ ，$g(6)=4$ 。如果某个正整数x满足：$g(x) > g(i)$ $0 < i < x$ ，则称 x 为反质数。例如，整数 1，2，4，6 等都是反质数。现在给定一个数 N ，你能求出不超过 N 的最大的反质数么？
 

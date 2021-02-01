@@ -4,6 +4,7 @@ date: 2019-03-03 23:15:40
 tags: 
     - LCA
 mathjax: true
+hidden: true
 ---
 
 [题目链接](https://www.luogu.org/problemnew/show/P3398)

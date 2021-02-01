@@ -4,6 +4,7 @@ date: 2019-08-04 22:50:11
 tags:
     - 博弈
 mathjax: true
+hidden: true
 ---
 
 $\sout{NOT\ FUN\ AT\ ALL}$

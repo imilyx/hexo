@@ -3,6 +3,7 @@ title: '[POJ2018]-Best Cow Fences'
 date: 2018-05-09 22:41:40
 tags:
     - 二分
+hidden: true
 ---
 
 https://vjudge.net/problem/POJ-2018

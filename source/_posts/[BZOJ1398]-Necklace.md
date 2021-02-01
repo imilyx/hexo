@@ -4,6 +4,7 @@ date: 2018-08-23 16:35:40
 tags: 
     - 最小表示法
 mathjax: true
+hidden: true
 ---
 
 [题目链接](https://vjudge.net/problem/HYSBZ-1398)

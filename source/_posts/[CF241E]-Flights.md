@@ -3,6 +3,7 @@ title: '[CF241E]-Flights'
 date: 2019-07-31 20:30:40
 tags:
     - 差分
+hidden: true
 ---
 
 [传送门](http://codeforces.com/problemset/problem/241/E)

@@ -4,6 +4,7 @@ date: 2019-07-24 23:15:40
 tags: 
     - Tarjan连通分量
 mathjax: true
+hidden: true
 ---
 
 [传送门](https://vjudge.net/problem/POJ-3352)

@@ -6,7 +6,7 @@ tags:
 mathjax: true
 ---
 
-http://codevs.cn/problem/1172/
+[传送门](http://codevs.cn/problem/1172/)
 
 题意：有 n 个询问，每个询问中有四个自然数 a, b, c, d, 然后求有多少个 x 满足 $gcd(a, x) = c$ 且 $lcm(b, x) = d$ 。
 $n \leq 2000$ , $1 \leq a, b, c, d \leq 2 * 10^9$ 。
@@ -35,7 +35,6 @@ $$\prod_{p | d} cnt_p$$
 
 同样我们预处理出 1～$\sqrt{2 * 10^5}$ 的所有质数，因为 d 至多包含 10 个质因子，所以计算量很小，深搜解决，时间复杂度 $O(n\sqrt{d} / logd)$ 。
 
-CODE：
 ``` c++
 #include <bits/stdc++.h>
 using namespace std;

@@ -4,6 +4,7 @@ date: 2018-08-07 23:11:11
 tags:
     - 概率与期望
 mathjax: true
+hidden: true
 ---
 
 http://www.joyoi.cn/problem/tyvj-2020

@@ -3,6 +3,7 @@ title: '[CF24E]-Berland collider'
 date: 2018-04-27 21:24:40
 tags:
     - 二分
+hidden: true
 ---
 
 http://codeforces.com/problemset/problem/24/E

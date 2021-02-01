@@ -4,6 +4,7 @@ date: 2018-10-01 14:40:40
 tags:
     - 博弈
 mathjax: true
+hidden: true
 ---
 
 [题目链接](https://vjudge.net/problem/POJ-2311)

@@ -5,6 +5,7 @@ tags:
     - 最短路
     - 拓扑排序
 mathjax: true
+hidden: true
 ---
 
 [传送门](https://www.lydsy.com/JudgeOnline/problem.php?id=2200)

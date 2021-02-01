@@ -5,6 +5,7 @@ tags:
     - 0/1分数规划
     - 负环判定
 mathjax: true
+hidden: true
 ---
 
 https://vjudge.net/problem/POJ-3621

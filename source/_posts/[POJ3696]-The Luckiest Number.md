@@ -4,6 +4,7 @@ date: 2018-07-25 15:50:40
 tags: 
     - 同余方程
 mathjax: true
+hidden: true
 ---
 
 https://vjudge.net/problem/POJ-3696

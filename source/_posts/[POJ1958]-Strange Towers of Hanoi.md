@@ -3,6 +3,7 @@ title: '[POJ1958]-Strange Towers of Hanoi'
 date: 2018-05-13 20:42:40
 tags:
     - 递推与递归
+hidden: true
 ---
 
 递推算法。

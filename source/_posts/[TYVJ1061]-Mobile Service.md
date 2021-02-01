@@ -3,6 +3,7 @@ title: '[TYVJ1061]-Mobile Service'
 date: 2018-04-28 18:40:40
 tags:
     - 线性DP
+hidden: true
 ---
 
 http://www.spoj.com/problems/SERVICE/

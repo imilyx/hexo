@@ -4,6 +4,7 @@ date: 2018-08-14 14:50:40
 tags: 
     - 计数DP
 mathjax: true
+hidden: true
 ---
 
 [题目链接](https://vjudge.net/problem/POJ-1037)

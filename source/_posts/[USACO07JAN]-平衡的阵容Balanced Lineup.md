@@ -4,6 +4,7 @@ date: 2019-07-24 23:25:11
 tags:
     - RMQ
 mathjax: true
+hidden: true
 ---
 
 [传送门](https://www.luogu.org/problem/P2880)

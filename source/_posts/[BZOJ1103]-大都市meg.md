@@ -4,13 +4,14 @@ date: 2019-02-13 20:20:40
 tags: 
     - dfs序
 mathjax: true
+hidden: true
 ---
 
 [题目链接](https://www.lydsy.com/JudgeOnline/problem.php?id=1103)
 
-使一条边 (x, y) 权值为 0 等价于给 y 及 y 的子树减一。
+使一条边 $(x, y)$ 权值为 $0$ 等价于给 $y$ 及 $y$ 的子树减一。
 
-求 x 到 1 的路径长度即求区间 [l[1], l[x]] 的值。
+求 $x$ 到 $1$ 的路径长度即求区间 $[l[1], l[x]]$ 的值。
 
 code :
 ``` c++

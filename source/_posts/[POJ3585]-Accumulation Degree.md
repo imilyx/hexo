@@ -4,6 +4,7 @@ date: 2018-06-06 14:45:40
 tags:
     - 树形DP
 mathjax: true
+hidden: true
 ---
 
 https://vjudge.net/problem/POJ-3585

@@ -4,6 +4,7 @@ date: 2018-07-10 20:56:40
 tags: 
     - 最近公共祖先
 mathjax: true
+hidden: true
 ---
 
 https://vjudge.net/problem/POJ-3417

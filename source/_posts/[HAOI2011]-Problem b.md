@@ -4,6 +4,7 @@ date: 2019-07-23 20:25:40
 tags: 
     - 莫比乌斯
 mathjax: true
+hidden: true
 ---
 
 [传送门](https://www.lydsy.com/JudgeOnline/problem.php?id=2301)

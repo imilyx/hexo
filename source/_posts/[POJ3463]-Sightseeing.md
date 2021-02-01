@@ -4,6 +4,7 @@ date: 2018-10-03 20:56:40
 tags: 
     - 最短路
 mathjax: true
+hidden: true
 ---
 
 题意：求从 s 到 t 最短路和比最短路长度大1的路径的总数。

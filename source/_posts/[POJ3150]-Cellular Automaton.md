@@ -4,6 +4,7 @@ date: 2018-06-30 14:50:40
 tags: 
     - 矩阵乘法
 mathjax: true
+hidden: true
 ---
 
 https://vjudge.net/problem/POJ-3150

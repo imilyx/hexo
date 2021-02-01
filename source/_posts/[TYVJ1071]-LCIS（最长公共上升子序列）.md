@@ -4,6 +4,7 @@ date: 2018-04-10 10:34:40
 tags:
     - 线性DP
 mathjax: true
+hidden: true
 ---
 
 http://www.joyoi.cn/problem/tyvj-1071

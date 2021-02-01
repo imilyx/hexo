@@ -4,6 +4,7 @@ date: 2019-04-13 19:30:11
 tags:
     - 最短路
 mathjax: true
+hidden: true
 ---
 
 [题目链接](https://www.luogu.org/problemnew/show/P2939)

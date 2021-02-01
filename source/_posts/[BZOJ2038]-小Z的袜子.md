@@ -4,6 +4,7 @@ date: 2019-02-04 16:56:40
 tags: 
     - 莫队
 mathjax: true
+hidden: true
 ---
 
 [题目链接](https://www.lydsy.com/JudgeOnline/problem.php?id=2038)
@@ -12,7 +13,7 @@ mathjax: true
 
 注意，要按块分左端点啊！还有，“若该概率为0则输出0/1” ！
 
-还有，对于每次询问，最后的 O(n) 查询每种颜色，可以换成每次 modify cnt数组时的操作。比如说要对 cnt[c[x]] 进行 +1 操作，因为在最后的 sum 里，它的贡献是 $cnt[c[x]] * (cnt[c[x]] - 1)$（最后统一除以2）, 设 cnt[c[x]] = w, 所以换成在 modify 时 $sum = sum - w * (w - 1) + w * (w + 1)$, 若是 -1 操作，则 $sum = sum - w * (w - 1) + (w - 1) * (w - 2)$.
+还有，对于每次询问，最后的 $O(n)$ 查询每种颜色，可以换成每次 modify cnt数组时的操作。比如说要对 cnt[c[x]] 进行 +1 操作，因为在最后的 sum 里，它的贡献是 $cnt[c[x]] * (cnt[c[x]] - 1)$（最后统一除以2）, 设 cnt[c[x]] = w, 所以换成在 modify 时 $sum = sum - w * (w - 1) + w * (w + 1)$, 若是 -1 操作，则 $sum = sum - w * (w - 1) + (w - 1) * (w - 2)$.
 
 code:
 ``` c++

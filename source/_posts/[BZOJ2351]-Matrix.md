@@ -4,6 +4,7 @@ date: 2018-08-23 16:30:40
 tags: 
     - Hash
 mathjax: true
+hidden: true
 ---
 
 [题目链接](https://vjudge.net/problem/HYSBZ-2351)

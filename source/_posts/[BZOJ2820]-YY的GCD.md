@@ -4,6 +4,7 @@ date: 2019-07-24 20:30:40
 tags: 
     - 莫比乌斯
 mathjax: true
+hidden: true
 ---
 
 [传送门](https://www.luogu.org/problemnew/show/P2257)

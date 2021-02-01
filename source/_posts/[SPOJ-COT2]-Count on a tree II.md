@@ -4,6 +4,7 @@ date: 2019-08-09 19:50:40
 tags: 
     - 树上莫队
 mathjax: true
+hidden: true
 ---
 
 [传送门](https://www.luogu.org/problem/SP10707)
