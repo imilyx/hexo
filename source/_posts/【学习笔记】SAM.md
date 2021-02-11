@@ -2,6 +2,7 @@
 title: '【学习笔记】SAM'
 date: 2020-08-10 08:00:40
 tags: 
+    - 学习笔记
     - SAM
 mathjax: true
 ---

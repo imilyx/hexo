@@ -1,7 +1,8 @@
 ---
-title: '【学习笔记】Boruvka算法'
+title: '【学习笔记】Boruvka'
 date: 2020-08-01 10:12:40
 tags: 
+    - 学习笔记
     - 最小生成树
 mathjax: true
 ---

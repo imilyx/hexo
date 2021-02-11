@@ -2,7 +2,9 @@
 title: '【学习笔记】Splay代码调整笔记'
 date: 2020-02-04 11:50:40
 tags: 
+    - 学习笔记
 mathjax: true
+hidden: true
 ---
 
 这篇博客的目的：力求固定一个优美而优秀的 splay 模板。

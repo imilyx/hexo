@@ -71,3 +71,21 @@ deploy:
   type: git
   repo: git@github.com:imilyx/imilyx.github.io.git
   branch: master
+
+math:
+engine: 'mathjax'
+mathjax:
+  src: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML
+
+valine:
+  enable: true
+  app_id:  WwVkmqHdV322JGk39EmCmruX-gzGzoHsz
+  app_key: 46l7pG878kSR76vVWgnVoiP4
+  notify: false # mail notifier , https://github.com/xCss/Valine/wiki
+  verify: false # Verification code
+  placeholder: ヾﾉ≧∀≦)o 来评论点什么 ~
+  guest_info: nick,mail,link
+  pageSize: 10
+
+encrypt:
+  password: mlx511115
