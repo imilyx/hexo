@@ -1,8 +1,9 @@
 ---
-title: '21Jan 学习计划'
+title: '21Jan 训练日志'
 date: 2021-01-31 23:59:59
 tags: 
 mathjax: true
+encrypt: true
 ---
 
 新年新坑~
