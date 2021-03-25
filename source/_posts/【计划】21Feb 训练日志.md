@@ -367,8 +367,8 @@ tarjan $O(m)$，可撤销并查集 $O(logn)$，整体二分就是 $O(m log^2n)$ 
             }
             ll query(int x, int l, int r, int k) {
                 if (!x || !k) return 0;
-                if (l == r) return min(k, sz[x]) * l;
-                // if (sz[x] <= k) return sum[x];  // 这里为什么不对啊 /kk 摸不着头发
+                if (l == r) return min(k, sz[x]) * l;  // !!! 应该是这个
+                // if (sz[x] <= k) return sum[x];  // 这个不对！在叶子处就错了
                 if (sz[rs[x]] <= k) return sum[rs[x]] + query(ls[x], l, mid, k - sz[rs[x]]);
                 else return query(rs[x], mid + 1, r, k);
             }
@@ -757,9 +757,7 @@ $$= \sum\limits_{i = 0}^m s_i \binom{n}{i} x^i$$
 
 ### [组合数问题](https://www.luogu.com.cn/problem/P6620)
 
-Trick：$\binom{n}{k} k^{\underline{m}} = \binom{n - m}{k - m} n^{\underline{m}}$（易证）
-
-把 $f(k)$ 变成下降幂形式 $\sum\limits_{i = 0}^m b_i k^{\underline{i}}$，再把 $\binom{n}{k} k^{\underline{i}}$ 变成 $\binom{n - i}{k - i} n^{\underline{i}}$，变换求和符号，上二项式定理就做完了。
+写在「联合省选2020 乱写」。
 
 ### [奥林匹克环城马拉松](https://uoj.ac/problem/226)
 
@@ -1282,6 +1280,8 @@ $S_i = T_i$ 的位，去掉那些不符合的数；$S_i \neq T_i$ 的位，即�
 
 ### $E$
 
+由于是凸包，所以只要确定每个向量取了几次。
+
 设第 $i$ 个向量取了 $c_i$ 次，有如下四个限制：
 
 $$\sum\limits_i c_i x_i = \sum\limits_i c_i y_i = 0$$
@@ -1290,8 +1290,6 @@ $$\sum\limits_{i, x_i > 0} c_i x_i \leq m$$
 
 $$\sum\limits_{i, y_i > 0} c_i y_i \leq m$$
 
-$m$ 很大，而向量很小
+$m$ 很大，需要极端的优化。考虑从低到高 dp 二进制下 $\sum c_i x_i$ 和 $\sum c_i y_i$ 的每一位。非常好的事情是向量很小，仅有 $4$，单这一位不会超过 $4n$。如果我们保留**已选和**的当前位及更高位，这个空间复杂度也是 $4n$，因为 $\sum\limits_{i = 0}^{+\infty} \lfloor \frac{x}{2^i} \rfloor = x$
 
-从低到高，类数位 dp，大概是接下来的能调整至满足限制，一定在一个长度为 4n 的区间里。
-
-~~不太懂先咕咕~~ 挂一个[官方题解](https://codeforces.com/blog/entry/73563)
+$dp_{lg, i, j, k, l, op1, op2}$ 分别表示当前第几位、保留「已选正 $x$ 和」的当前位及更高位、保留「已选正 $y$ 和」的当前位及更高位、保留「已选负 $x$ 和」的当前位及更高位、保留「已选负 $y$ 和」的当前位及更高位、$x$ 的后缀和是否大于 $m$ 的对应后缀和、$y$ 的后缀和是否大于 $m$ 的对应后缀和。

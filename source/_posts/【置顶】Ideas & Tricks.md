@@ -47,7 +47,29 @@ encrypt: true
 
 - 不相交路径计数考虑 LGV，LGV 的「边积」加生成函数有奇效，比如某些位置必须被经过多少次之类的，就往经过它的路径边权乘一个 $z$，达到了很好的限制效果。边行列式边卷积显然爆炸，随便什么带进去，最后插回来得到系数。
 
-## dp
+- 一个不难但是 xml 没想到的 trick= =：矩阵乘法如果求的是矩阵 $A$ 的 $\sum\limits_{i = 0}^n A^i$，建虚的出发点 $s$，连边 $(s, s, 1)$（开头若干次轮空），再连边 $(s, t, 1)$（一步到终点）。
+
+- 用链表将动态加点变成动态删点。（$CF627E-Orchestra$）
+
+- 点数为 n 的无向图，大小为 $\lceil \sqrt{n} \rceil$ 的环和大小为 $\lceil \sqrt{n} \rceil$ 的独立集至少存在一个。（$CF1325F$）
+
+- 主元素法求绝对众数（出现次数 $>$ 总元素个数 $/ 2$）：其余的都被彼此抵消完了
+    ``` c++
+    cur = a[1];
+    cnt = 0;
+    rep(i, 1, n)
+        if (a[i] == cur) cnt++;
+        else {
+            if (cnt > 0) cnt--;
+            else cur = a[i];
+        }
+    // 最后的 cur 就是绝对众数
+    // 空间 O(1)，时间 O(n)
+    ```
+
+- 半平面交对偶转凸包：[大佬](https://trinkle.blog.uoj.ac/blog/235)
+
+## dp & 计数
 ---
 
 * $dp$ 套 $dp$ 可以看作在一个自动机上暴跑。
@@ -61,6 +83,10 @@ encrypt: true
 * 形如 $dp[i] = \sum\limits_{j = 1}^{c_i} dp[i - j * d]$，可以每 $c_i$ 个设置关键点，$O(n)$ 预处理每个块前后缀和，$O(1)$ 查询。
 
 * dp 柿子写出来后信仰 BM。
+
+- 要求父亲颜色 $>$ 儿子的树上填色计数：子树 $x$ 的答案是 $\frac{sz_x!}{\prod\limits_{y \in subtree(x)} sz_y}$
+
+- 填色，要求相邻两个不同色：如果是两三种颜色，考虑分别加，插板法，三种颜色需要考虑先加 A，A 的间隙中有 BCBC(CBCB)、CBC、BCB 三种情况即对 B - C 分别贡献 $0$、$-1$、$+1$，枚举 BCBC 的个数就能算出另外两种的个数。如果颜色很多，就要 dp，留一维表示有多少个间隙需要填，复杂度就 $n^3$ 了……
 
 ## 数学
 ---
@@ -111,6 +137,10 @@ encrypt: true
 
 - 转置做多点求值的科技：[rqy讲得好赞！](https://rqy.moe/Algorithms/polynomial-evaluation/) ~~在「21Mar」里写了点简化版~~
 
+- 扩展欧拉定理：[大佬的证明](https://blog.csdn.net/ez_yww/article/details/76176970)
+
+- 传统的莫反柿子 $f_n = \sum\limits_{d \mid n} g_d \Rightarrow g_n = \sum\limits_{d \mid n} \mu(\frac{n}{d}) f_d$ 可以看作在质因子集合上 对 $g$ 做高维前缀和 $\Rightarrow$ 对 $f$ 做高维差分。就可以一只 $log$ 算出所有 $f$ 和 $g$ 啦。
+
 ## 博弈
 ---
 
@@ -153,6 +183,8 @@ encrypt: true
 
 - DAG 相关的状压 dp 可考虑分层，每次加入一波度数为 $0$ 的点。
 
+- 矩阵树定理计算边权**和**：边权为 $w_i$ 的边设其边权为 $1 + w_i x$，答案就是行列式的一次项系数。
+
 ## 数据结构
 ---
 
@@ -163,6 +195,10 @@ encrypt: true
     $$\sum\limits_{i = 1}^x a_i = \sum\limits_{i = 1}^x \sum\limits_{j = 1}^i d_i = \sum\limits_{i = 1}^x d_i * (x - i + 1) = (x + 1) * \sum\limits_{i = 1}^x d_i - \sum\limits_{i = 1}^x d_i * i$$
 
 * 区间问题转二维数点。
+
+- BIT + 倍增：卡常神器，可用来解决「维护前缀和，要求满足某条件的 $lower/upper\_bound$」
+
+- 线段树的奇特写法：查询 $[l, r]$ 信息，从 $[l - 1, l - 1]$ 上跳，沿途若有右子树就计入贡献；从 $[r + 1, r + 1]$ 上跳，沿途若有左子树就计入贡献。这些右子树和左子树拼成了 $[l, r]$。（$ZJOI2017-$线段树）
 
 ## 字符串
 ---
