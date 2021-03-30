@@ -591,8 +591,6 @@ $$= Val[r] ( s[i - 1, m] - s[i - 1, m - r] ) - v[m - r] \sum\limits_{l \leq r} b
 
 写在「学习笔记」斜率优化、带权二分、决策单调性。
 
-### [$Ynoi2011-$竞赛实验班/$loj517-$计算几何瞎暴力](https://www.luogu.com.cn/problem/P5312)
-
 ### [$UOJ430-line$](https://uoj.ac/problem/430)
 
 写在「斜率优化 学习笔记」里。
@@ -611,15 +609,21 @@ xza 出的~~凉~~良心场。话说 xza 场的榜总是分布完美……
 
 #### $T2$
 
-SAM？LCT 链上加维护最小值？两只 $log$。
+SAM，每次给一段前缀取 max，如果暴力跳，复杂度是 $O(n\sqrt{n} logn)$ 的（$logn$ 是因为 SAM 一个节点是一段区间，要树状数组）
 
-一只 $log$ 就是——考虑离线，广义 SAM 加点就打标记，而**一个询问对应的是一段前缀的点**，所以最后从头开始沿着加点路径走一遍，把标记下推，顺便回答询问。
+这个「到根的链取 max」操作很像 LCT 的 access，考虑每棵 splay 维护颜色相同的段，碰到比 $w_i$ 大的段就停，套用 access 复杂度分析，就是一只 $log$ 的。由于到根的链上值单调不降，修改是 $O(nlogn)$ 次区间加（分段了嘛），用 BIT 做到 $O(nlog^2n)$。在线。
+
+考虑离线建出广义 SAM，加串就 access + 对应长度的答案区间加，差分，然后加完立刻推一遍标记即可。一只 $log$！
 
 #### $T3$
 
 好像很妙，设 $p_i$ 为前 $i$ 个位置修改次数和，那么 $p_i \geq p_{i - 1}$, $\forall i, j \in [l, r]$, $s_j + p_j - s_i - p_i \leq K$，$p_i \geq p_j + s_j - s_i - K$，就从 $j$ 向 $i$ 连 $s_j - s_i - K$ 的边，求最长路。
 
-由于这是个 DAG，相当于选一些不交区间让代价和最小，这个可以用费用流做。设选 $i$ 个区间的最小代价为 $f(i)$，根据费用流的柿子，$f(i)$ 有凸性（因为每次增广增加的流量不会超过之前增广所增加的），这样就可以区间维护凸包，然后用斜率为 $K$（阈值）的直线去切（根据上面的转移柿子可知，每选一个区间就 $-K$）。凸包合并就闵可夫斯基。
+由于这是个 DAG，相当于选 $num$ 个不交区间让代价和 $- K * num$ 最小，这个可以用费用流做。设选 $i$ 个区间的最小代价和为 $f(i)$（不算入 $-K * i$），根据费用流的性质，$f(i)$ 有凸性（因为每次增广增加的流量不会超过之前增广所增加的），这样就可以区间维护凸包，然后用斜率为 $K$（阈值）的直线去切，因为将 $i$ 视为 $x$，$f(i)$ 视为 $y$，就是要让截距 $b$ 即 $f(i) - K * i$ 最大，那自然是切点处了。凸包合并就闵可夫斯基。
+
+怎么合并？和普通线段树最大子段和一个套路，每个节点记录 $[0/1, 0/1]$ 表示左右端点是否在取的区间里。
+
+~~竟然卡我凸包加乘时 vector 的取 size 操作的常数！~~
 
 ### $AGC\ 013$
 
@@ -628,8 +632,6 @@ SAM？LCT 链上加维护最小值？两只 $log$。
 我的草稿本像卷心菜叶子一样破！（迫真
 
 ## $\mathcal{3.25}$
-
-今日计划：订正 ARC115-F 和 CF709-E、F，订正昨天模拟赛。做完了就去写 https://loj.ac/p/517 和 https://www.luogu.com.cn/problem/P2612 和 https://www.luogu.com.cn/problem/CF1237E 和 https://www.luogu.com.cn/problem/CF1227G 和 https://www.luogu.com.cn/problem/CF671D 吧！
 
 ### $XJOI1720$
 
@@ -679,7 +681,165 @@ l1  l2  r1      r2
 
 论文题，隐式后缀树板子题？我不会呀。赛时写了 $25$ 分的广义 SAM + PAM。
 
+## $\mathcal{3.26}$
+
+### $XJOI1721$
+
+为什么大家都会 T1 T2 啊…… 人傻了，咱班 A 队爷遍地走 👍
+
+#### $T1$
+
+真的是 dp 状态反过来了啊。。为什么不再想想呢，~~是因为惧怕 dp 套 dp 而逃走了吗~~
+
+但这其实很明显啊，状态特别特别大，价值特别小，反过来就从最优性变成判定性（实则是另类的最优性）问题了。
+
+$f_{i, j}$ 表示考虑前 $b_i$ 项，价值为 $j$ 的子序列，$A - b_i * X + \sum\limits_{p_j \leq b_i} (a_{p_j} + X)$ 的最大值。转移枚举第 $i + 1$ 段是否有价值，无则全选，有则在 $(b_{i}, b_{i + 1}]$ 贪心选，即保证每个前缀 $\geq 0$ 且选的个数不超过 $h_i$ 的情况下尽量选 $a$ 大的，拿个堆存选择，求出最大的 $A - b_{i + 1} * X + \sum\limits_{p_j \leq b_{i + 1}} (a_{p_j} + X)$。$O(nmlogn)$。
+
+#### $T2$
+
+矩乘都没推出来…… wtcl~ 想到了维护 $A_n$ $B_n$，但是这是二次的呀？没有关系，再维护 $A_n^2$ 和 $B_n^2$ 即可，$55$ pts。
+
+正解就很神仙了。归纳可证 $(x + yi)^n = A_n + B_ni$。~~题解：仔细观察即可发现。我！啊wtcl。~~
+
+设 $T_n = \frac{A_n B_n}{C_n}$，$(x + yi)^{2n} = A_n^2 - B_n^2 + 2 A_n B_n i$，我们要求的是 $\frac{1}{2} \sum\limits \frac{Im((x + yi)^{2n})}{C^n} = Im( \frac{1}{2} \sum \frac{(x + yi)^{2n}}{C^n} )$，扩域 + 等比数列求和即可。（$Im(z)$ 表示复数 $z$ 的虚部）
+
+$m = \infty$：
+- 若有答案则答案 $= \frac{ 1 - \frac{ (x + yi)^{2(m + 1)} }{ C^{m + 1} } }{ 1 - \frac{(x + yi)^2}{C} }$
+- 发散是什么情况呢？$\frac{(x + yi)^2}{C} \geq 1$
+- $C \mod p = 0$：$= 0$。分子中：分母是常数 $0$，不能洛必达（应该是吧），但是分子趋近于 $0$，可以默认为最高阶的无穷小，不论分子是多少阶的无穷小。等阶无穷大，相除 $= 1$。因此本柿的分子 $= 0$。分母中：由于分子不趋近于 $0$，分母应该是一个无穷小的数。
+
+$m \neq \infty$：
+
+- $C \mod p = 0$：无解
+
 ---
+
+hcy 的生成函数做法：设 $f_n = a_nb_n$, $g_n = a_n^2$, $h_n = b_n^2$, 解 $F$、$G$、$H$ 的三元一次方程组，然后我解出来（权当娱乐）：$F = \frac{y^2 - \frac{(x^2 - \frac{1}{z})^2}{xy}}{xy + \frac{x^3}{y} - \frac{x}{zy}} / (2xy + \frac{zx^3}{y} - \frac{2x}{zy} + \frac{y^3}{x} - \frac{(x^2 - \frac{1}{z})^2}{xy})$。反正 hcy 解出来的东西比上面这鬼东西清真多了，只要等比数列求和即可。
+
+---
+
+#### $T3$
+
+考虑了分块和 FFT 但是啥都没考虑出来= = 我也就想个壳的水平 但是 $T2$ 比 $T3$ 难多了呜哇
+
+链：分 $k$ 块，统计中间元素在块中的贡献，对块两边建哈希表
+- 仨元素在块内：枚举中间元素，对一侧建哈希表，枚举另一侧
+- 俩元素在块内：枚举俩元素，在最开始的哈希表中查询
+- 一元素：两边哈希表 FFT。
+
+$O(n * \frac{n}{k} + k * nlogn)$
+
+拓展到树上，树分块 + 处理祖先和每个子树的哈希表即可……
+
+### [$Ynoi2011-$竞赛实验班/$loj517-$计算几何瞎暴力](https://www.luogu.com.cn/problem/P5312)
+
+写在「Ynoi」。
+
+### [五彩斑斓的世界](https://www.luogu.com.cn/problem/P4117)
+
+写在「Ynoi」。
+
+## $\mathcal{3.27}$
+
+### 镜中的昆虫
+
+写在「Ynoi」。
+
+### [$CF1278F-Cards$](https://www.luogu.com.cn/problem/P6031)
+
+设 $p = \frac{1}{m}$。则 $ans = \sum\limits_{i = 0}^n \binom{n}{i} p^i (1 - p)^{n - i} i^K$
+
+看到组合数和 $i^K$ 就应该想到那个著名的 $\binom{n}{m} m^{\underline{k}} = \binom{n - k}{m - k} n^{\underline{k}}$。$i^K$ 当然用第二类斯特林数拆开咯。
+
+得 $ans = \sum\limits_{i = 0}^K {K \brace i} n^{\underline{i}} p^i$, 用 NTT 什么的可以 $O(K log K)$ 计算。
+
+## $\mathcal{3.28}$
+
+### UR17
+
+单写
+
+## $\mathcal{3.29}$
+
+### $XJOI1722$
+
+爆零了，暴力写挂人傻了
+
+#### $T1$
+
+#### $T2$
+
+限制忒多了！一个个拆。
+
+如果把蓝点 $x$ 坐标看作纵坐标，红点 $x$ 坐标看作横坐标，询问的就是左上和右下两块矩形。
+
+考虑分治（真实的）$y$ 坐标，每次加一些点对。一轮中（当前考虑的红蓝点集合的 $y$ 坐标在范围 $[vl, vr]$ 内）统计所有 $\leq mid$ 的红点和 $> mid$ 的蓝点形成的点对，总数是 $O(n^2)$ 的，但是我们只要保留最大红点所在列和最大蓝点所在行即可（不然就是红蓝点都没有了一定不优，位置什么的分讨一下吧）。这样就一次 $O(n)$ 了，总共 $O(nlogn)$ 对，二维数点即可。代码很好写，封装 yyds！
+
+#### $T3$
+
+[原题](https://codeforces.com/gym/102978/problem/C)
+
+### [怎样跑得更快](https://uoj.ac/problem/62)
+
+啥都不知道，只知道可以反演。那就反了：$\frac{b_i}{i^d} =$
+
+$\sum\limits_{g \mid i} g^{c - d} \sum\limits_{j = 1}^{\lfloor \frac{n}{g} \rfloor} [gcd(\frac{i}{g}, j) == 1] (jg)^d x_{jg}$
+
+$\sum\limits_{g \mid i} g^{c - d} \sum\limits_{j = 1}^{\lfloor \frac{n}{g} \rfloor} (jg)^d x_{jg} \sum\limits_{k \mid \frac{i}{g}, k \mid j} \mu(k)$
+
+枚举因数可不好搞。放前面来！又要保证 $k \mid j$，不如让 $j = kj$
+
+$\sum\limits_{g \mid i} g^{c - d} \sum\limits_{kg \mid i} \mu(k) \sum\limits_{j = 1}^{\lfloor \frac{n}{kg} \rfloor} (kjg)^d x_{kjg}$
+
+有 $kg$ 这个共同项了！搞掉它！
+
+$\sum\limits_{g \mid i} g^{c - d} \sum\limits_{t \mid i, g \mid t} \mu(\frac{t}{g}) \sum\limits_{j = 1}^{\lfloor \frac{n}{t} \rfloor} (jt)^d x_{jt}$
+
+都要仰仗 $t$，把它提前
+
+$\sum\limits_{t \mid i} ( \sum\limits_{g \mid t} g^{c - d} \mu(\frac{t}{g}) )( \sum\limits_{j = 1}^{\lfloor \frac{n}{t} \rfloor} (jt)^d x_{jt} )$
+
+设第一个括号为 $f_t$，第二个括号为 $g_t$，$f_kg_k = \sum\limits_{t \mid k} \frac{b_t}{t^d} \mu(\frac{k}{t})$ 求出 $g$, 观察柿子发现倒序并枚举倍数解 $x$ 即可，$O(nlogn)$。
+
+hint：要预处理幂次和逆元，得到的解还要带到最后一个柿子👆里验算一下。以及 $c - d$ 可能为负。
+
+[$Code$](https://uoj.ac/submission/465395)
+
+### [雅礼集训-图](https://loj.ac/p/6497)
+
+简单题，注意到与之前某条链拼在一起后并不会消耗这条链，记录「位置、链数奇偶、有无以黑点结尾的链、有无以白点结尾的链」就可以 dp 啦。[$Code$](https://loj.ac/s/1103071)
+
+### [雅礼集训-树](https://loj.ac/p/6495)
+
+考虑每次拼一棵树上去，讨论当前拼的子树是否会改变全树最大深度。[$Code$](https://loj.ac/s/1103146)
+
+### [$JSOI2018-$战争](https://loj.ac/p/2549)
+
+加入存在一个凸包 $A$ 里的 $a$ 使得 $a + (dx, dy)$ 后与某个凸包 $B$ 里的 $b$ 重合，即 $a + (dx, dy) = b$, 就有 $a + (-b) = (dx, dy)$，因此求出 $A$ 和 $-B$ 的闵可夫斯基凸包和，查询就判 $(dx, dy)$ 是否在大凸包里即可。[$Code$](https://loj.ac/s/1103412)
+
+### [万圣节的糖果](https://uoj.ac/problem/144)
+
+将每个集合里最大的数看成关键点，就是选 $m$ 个关键点，并从每个点向比它大且奇偶性不同的点连边。
+
+奇偶性不同不好算，考虑 $+1$，增加 $n + 1$ 这个点，就是与比它大且奇偶性相同的点连边啦。
+
+举个例子：本来是 $1 \rightarrow 2$, $3 \rightarrow 4 -> 7$, $5 \rightarrow 6$, $+1$ 后变成 $1 \rightarrow 3$, $3 \rightarrow 5 \rightarrow 7$, $4 -> 8$, $6$
+
+设 $f_{i, j, k}$ 表示前 $i$ 个点，$j$ 个集合末尾与 $i$ 奇偶性相同，$k$ 个集合末尾与 $i$ 奇偶性不同，每个非关键点与比它大且奇偶性相同的点连边的方案数。显然 $f_{i, j, k} = {\lfloor \frac{i}{2} \rfloor \brace j} * { \lceil \frac{i}{2} \rfloor \brace k }$
+
+设 $g_{i, j, k}$ 表示前 $i$ 个点，$j$ 个集合末尾与 i 奇偶性相同，k 个集合末尾与 i 奇偶性不同，每个非关键点与比它大且奇偶性不同的点连边的方案数。
+
+显然 $+1$ 前是关键点的，$+1$ 后也是关键点。而 $+1$ 后第 $i + 1$ 个点变成了关键点，相当于集合个数变成 $j + k + 1$。因此 $g_{i, j, k} = f_{i + 1, k + 1, j}$。
+
+---
+
+今日计划：
+CF1392H
+一道 Ynoi，
+vp 一场 CF，
+ULR 打击复读
+
+今日计划：订正 ARC115-F，做完了就去写 https://www.luogu.com.cn/problem/P2612 和 https://www.luogu.com.cn/problem/CF1237E 和 https://www.luogu.com.cn/problem/CF1227G 和 https://www.luogu.com.cn/problem/CF671D 吧！
 
 ## 今天的计划应该是——
 
