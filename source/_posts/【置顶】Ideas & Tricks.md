@@ -143,6 +143,8 @@ encrypt: true
 
 - 传统的莫反柿子 $f_n = \sum\limits_{d \mid n} g_d \Rightarrow g_n = \sum\limits_{d \mid n} \mu(\frac{n}{d}) f_d$ 可以看作在质因子集合上 对 $g$ 做高维前缀和 $\Rightarrow$ 对 $f$ 做高维差分。就可以一只 $log$ 算出所有 $f$ 和 $g$ 啦。
 
+- 上指标反转：$\binom{n}{m} = (-1)^m \binom{m - n - 1}{m}$。证明：$\binom{n}{m} = n^{\underline{m}}{m!} = (-1)^m \frac{((m - 1) - n)((m - 2) - n) \cdots (-n)}{m!} = (-1)^m \frac{(m - n - 1)^{\underline{m}}}{m!} = (-1)^m \binom{m - n - 1}{m}$
+
 ## 博弈
 ---
 

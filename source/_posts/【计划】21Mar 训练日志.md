@@ -348,21 +348,9 @@ $f_i$ 倍增计算（按堆建树，长度就是 $2$ 的整数幂），维护 $f
 
 单写了
 
-### 集训队作业
-
 ### 六省联考
 
-### snoi2020 排列
-
-### sdoi2017
-
-### [新年的小黄鸭](https://uoj.ac/contest/48/problem/462)
-
-### [快乐游戏鸡](https://uoj.ac/problem/284)
-
-### CF1349D slime and biscuits
-
-### cf1392H
+单写了
 
 ---
 
@@ -745,14 +733,6 @@ $O(n * \frac{n}{k} + k * nlogn)$
 
 写在「Ynoi」。
 
-### [$CF1278F-Cards$](https://www.luogu.com.cn/problem/P6031)
-
-设 $p = \frac{1}{m}$。则 $ans = \sum\limits_{i = 0}^n \binom{n}{i} p^i (1 - p)^{n - i} i^K$
-
-看到组合数和 $i^K$ 就应该想到那个著名的 $\binom{n}{m} m^{\underline{k}} = \binom{n - k}{m - k} n^{\underline{k}}$。$i^K$ 当然用第二类斯特林数拆开咯。
-
-得 $ans = \sum\limits_{i = 0}^K {K \brace i} n^{\underline{i}} p^i$, 用 NTT 什么的可以 $O(K log K)$ 计算。
-
 ## $\mathcal{3.28}$
 
 ### UR17
@@ -831,78 +811,128 @@ hint：要预处理幂次和逆元，得到的解还要带到最后一个柿子�
 
 显然 $+1$ 前是关键点的，$+1$ 后也是关键点。而 $+1$ 后第 $i + 1$ 个点变成了关键点，相当于集合个数变成 $j + k + 1$。因此 $g_{i, j, k} = f_{i + 1, k + 1, j}$。
 
+### [$CF1392H$](https://www.luogu.com.cn/problem/CF1392H)
+
+某谷翻译有误，题意应该是抽到坏牌进入下一轮，但是秒数累加，并且询问的是期望秒数。
+
+$$ans = \sum\limits_{i = 1}^{\infty} E(第 i 轮的贡献)$$
+
+$$= \sum\limits_{i = 1}^{\infty} P(前 i - 1 轮都没抽完) E(第 i 轮的期望秒数)$$
+
+$$= E(一轮的期望秒数) * \sum\limits_{i = 1}^{\infty} P(前 i - 1 轮都没抽完) * 1$$
+
+$$= E(一轮的期望秒数) * E(期望轮数)$$
+
+算第一项：期望线性性，每张牌贡献累加，$n * \frac{1}{m + 1} + 1$
+
+算第二项：$f_i$ 表示还有 $i$ 张好牌没抽，结束此轮的期望数, $f_i = \frac{i}{m + i}(1 + f_{i - 1}) + \frac{m}{m + i}(1 + f_i)$, $f_0 = 1$。那么 $f_n = m + 1 + \sum\limits_{i = 2}^n \frac{m}{i}$。
+
+算第二项还可以 min-max 容斥！$P(x)$ 表示第 $x$ 张好牌期望在第几轮被抽到，那么 $E(\max(P(x))) = \sum\limits_{T \subseteq S} (-1)^{|T| + 1} E(\min(P(T)))$，即询问抽到第一张 $T$ 中的牌之前抽到了几张坏牌。显然 $E(\min(P(T))) = 1 / \frac{|T|}{|T| + m} = \frac{|T| + m}{|T|}$。
+
+还有一种做法😂，就贴链接了：[点我，做法三](https://www.cnblogs.com/Grice/p/14457641.html)
+
+[$Code$](https://codeforces.com/contest/1392/submission/111459659)
+
+### [未来日记](https://www.luogu.com.cn/problem/P4119)
+
+写在「Ynoi」。
+
+## $\mathcal{3.31}$
+
+### $XJOI1723$
+
+#### $T1$
+
+在最短路图上 dp，一层层加点，$dp_{i, j, k, 0/1}$ 表示当前共有 $i$ 个点，到了第 $j$ 层，第 $j$ 层点数为 $k$，$n$ 号点有无出现过。出现的时候乘上距离。$O(n^4)$
+
+「$n$ 什么时候出现」这个事情很干扰我们优化的大业，而 $2$ ~ $n$ 这 $n - 1$ 个点都是等价的，干脆统计所有图的距离和之和，最后除以 $n - 1$。
+
+冷静一下发现可以设两个 dp 数组 $f_{i, j, k}$ 和 $g_{i, j, k}$ 分别表示共有 $i$ 个点，到了第 $j$ 层，第 $j$ 层点数为 $k$ 的方案数和距离和。（目前和上面那个 dp 状态没有本质区别，但是接下来会方便区分一点）
+
+考虑精简状态，发现 $j$ 没什么用，只在统计距离的时候被乘到答案里去。每个点的距离 $d$ 可以表示成 $\sum\limits_{i = 1}^n [d \geq i]$。每次加点的时候对当前及以后层的点距离加一，即可。$O(n^3)$ 超帅气 (*≧ω≦)！
+
+#### $T2$
+
 ---
 
-今日计划：
-CF1392H
-一道 Ynoi，
-vp 一场 CF，
-ULR 打击复读
+关于部分分：共有 $O(n)$ 个变量、$O(n^2)$ 个方程，每个方程只有 $4$ 个变量，暴力 bitset 模拟线性基消元是 $O(n^4 / \omega)$ 的。
 
-今日计划：订正 ARC115-F，做完了就去写 https://www.luogu.com.cn/problem/P2612 和 https://www.luogu.com.cn/problem/CF1237E 和 https://www.luogu.com.cn/problem/CF1227G 和 https://www.luogu.com.cn/problem/CF671D 吧！
-
-## 今天的计划应该是——
-
-今天任务：然后去写清训题，再去写 thupc 题，晚上 vp AGC
-
-做 CF 好题呀！
-
-<!-- 今天任务：学拟阵 + 保序回归（） -->
-
-LOJ154!!!
-写转置版多点求值
-thupc、thuwc
-清华集训（选）感觉题质量不是太好
-loj6295（线性规划）
-uoj448
-生成函数：LOJ3102 luogu5577 数树 普通转下降幂
-集训队作业：化学竞赛
-写 exgcd 总结（通解）
-
-
-
+如果维护线性基的最简形式，即若某一位有主元则该位只有一个主元，每次插入线性基的时候用 $_Find_first()$ $_Find_next()$ 快速找到主元所在基并异或，这部分是 $O(n^3 / \omega)$；而插入也是 $O(n^3 / \omega)$，因为插入只发生 $O(n)$ 次，每次消去其他基在此主元位的 $1$，$O(n^2 \omega)$。
 
 ---
-Gym 入坑指南：（勿删！有 xza 课件外强推场次）
 
-可看星级
+关于正解：
 
-ICPC：
-- EC final 18(jiry_2)、19(xudyh)年
-- 日韩赛区的 ICPC
-- 欧洲的 NEERC、NERC、CERC(15~17)
-官网找题解
+把 $a$ 异或上 $b$，就是问你能不能让 $a$ 全 $0$。
 
-official international personal contest:
-- yandex.algorithm
-    2018 final round
-    以及一些 qualification round
-- russian code cup
-- facebook hacker camp
-- google code jam
-    final
+一个事情是，不管你怎么操作横竖，每个 $2 * 2$ 子矩阵的异或值是不变的。只考虑经过四个中一个格子的斜线，可以从 $4$ 个中的 $3$ 个推出另一个。考虑枚举从 $(1, 2)$ 和 $(2, 1)$ 出发向右下延伸的直线，和从 $(1, 1)$ 出发向下和向右延伸的直线，和从 $(1, 1)$ 和 $(2, 2)$ 向右上和左下延伸的直线，总共是六条直线，就可以确定斜线对整个矩形的影响。$2^4$ 枚举, $O(nm)$ check。
 
-school/university/city/region championship
-- CCPC
-    分站赛
-    final(18、19)
-- 多校
-
-opencup contest & training camp contest
-- moscow workshop
-    https://discover.it-edu.com/en/
-- petrozavodsk camp 毛营题
-    有一些科技
-- open cup
-题解找google
-
-看讨论？也许有题解
-
-opencup 里推荐的
-- XXI opencup gp of tokyo
-- XX opencup gp of tokyo
-- XXI korea
-- 2019 ICPC asia east continent final
-- 300iq contest 1 ~ 3
-- rng_58 (14、15) 毛营
 ---
+
+还有一种方法。每个 $4 * 4$ 矩形里那个八边形的外壳异或和一定为 $0$。必要性显然，充分性还不会证 /kk
+
+讲题人用了「信息熵」这个概念，这也太铉学了。。完全不懂
+
+---
+
+xza 的方法就非常自然，把相邻两个格子的斜线异或值看作一个变量，枚举头四个格子的四个变量（自由元），带权并查集 check 是否会产生冲突。
+
+---
+
+#### $T3$
+
+算出重心恰好在某个点的方案可以容斥算，即重心在 $x$ 子树的答案 - 重心在 $x$ 儿子子树的答案。重心在大小为 $s$ 子树的答案就是插板法：$\sum\limits_{i = (m + 1)/2}^m \binom{i + s - 1}{s - 1} \binom{m - i + n - s - 1}{n - s - 1}$。考虑组合意义，我们把 $m$ 个球放入 $n$ 个盒子里，枚举中间小球放在哪个盒子，而贡献的是一段 $s$ 的后缀，做前缀和即可。
+
+$m$ 奇数，重心确定直接做。
+
+$m$ 为偶数，可行重心构成一条链，于是考虑点分治。
+考虑经过点分中心的贡献，一对在不同子树中的链的贡献就是链上最小值乘上两侧方案数。从大到小枚举链上最小值，线段树啥的维护一下 $O(nlog^2n)$。
+
+点分治 + 并查集做法：大概就是从大到小枚举点并到父亲，并的时候从父亲答案里扣掉一部分。
+
+### [$CF671D-Roads\ in\ Yusland$](https://www.luogu.com.cn/problem/CF671D)
+
+显然可以线段树维护整体 dp。什么你不会了？？就是第二维分治合并，每次把 $> mid$ 的贡献给 $< mid$ 的呗。但是空间比较炸，常数也比较大。
+
+$f_x$ 表示覆盖 $x$ 子树和 $x$ 父边的最小代价。
+
+两种情况：
+1. 选 从 $x$ 向上的方案。$f_x = \min(cost(x, ?)) + \sum\limits_{y \in son(x)} f_y$
+2. 不选 从 $x$ 向上的方案。即有一个 $y$ 其中的方案含边覆盖 $x$ 的父边。设该方案代价为 $c$。$f_x = c + \sum\limits_{z \in son(x), z \neq y} f_z = c - f_y + \sum\limits_{z \in son(x)} f_z$
+
+开 set 维护每个点可能对祖先产生贡献的方案，启发式合并。
+
+方案可以精简 size，具体来说记录 $(dep, cost)$，dep 表示覆盖到的最低深度，如果 $dep_1 < dep_2$ 且 $cost_1 < cost_2$ 那 $2$ 就没有存在的必要了。set 里的东西就有单调性啦！
+
+这样也方便了我们查询最小 dp 值——就是末项嘛！
+
+~~加了启发式合并在 CF 上比不加只快了 47ms！~~
+
+[$Code（有细节注释）$](https://www.luogu.com.cn/paste/h88crqa7)
+
+### [$CF1278F-Cards$](https://www.luogu.com.cn/problem/P6031)
+
+设 $p = \frac{1}{m}$。则 $ans = \sum\limits_{i = 0}^n \binom{n}{i} p^i (1 - p)^{n - i} i^K$
+
+看到组合数和 $i^K$ 就应该想到那个著名的 $\binom{n}{m} m^{\underline{k}} = \binom{n - k}{m - k} n^{\underline{k}}$。$i^K$ 当然用第二类斯特林数拆开咯。
+
+得 $ans = \sum\limits_{i = 0}^K {K \brace i} n^{\underline{i}} p^i$, 用 NTT 什么的可以 $O(K log K)$ 计算。
+
+如果你把这个第二类斯特林数展开，最后推得 $ans = \sum\limits_{j = 0}^k j^k \binom{n}{j} p^j \sum\limits_{i = 0}^{k - j} \binom{n - j}{i} (-p)^i$。
+
+后面那个 $\sum$ 怎么搞？设 $S(j) = \sum\limits_{i = 0}^{k - j} \binom{n - j}{i} (-p)^i$，拆开组合数得 $S(j) = (1 - p)S(j + 1) + \binom{n - j - 1}{k - j} (-p)^{k - j}$。
+
+$n$ 太大了！$\binom{n}{j}$ 可以下降幂算，$\binom{n - j - 1}{k - j}$ 可以用吸收公式 $\binom{n - j - 1}{k - j} = \frac{n - j - 1}{k - j} \binom{n - (j + 1) - 1}{k - (j + 1)}$
+
+坑点！$n < k$ 的时候会出锅，就按展开前的算。代码先咕了~ 啥时候自己推出来啥时候补代码。
+
+### [$UOJ214-$合唱队形](https://uoj.ac/problem/214)
+
+$n = m$ 时，假设总共有 $p$ 节课，当前有 $r$ 个人。那么拓展到 $r + 1$ 的概率就是 $\frac{m - r}{p}$，期望次数是 $\frac{p}{m - r}$, $ans = \sum\limits_{i = 0}^{m - 1} \frac{p}{m - i}$
+
+设 $t_i$ 表示以第 $i$ 个人为开头的队形组成的期望时间，min-max 容斥，现在要算 $\max(t_i)$。显然答案只和课程数有关！
+
+- $n - m + 1$ 较小时，$O(n2^{n - m + 1})$ 暴枚即可，就和 $n = m$ 一样算。
+- $n - m + 1$ 较大，就是说 $m$ 比较小，可以考虑 dp：$f_{i, j, k}$ 表示到第 $i$ 个人，$i$ 前 $m$ 个人为开头的队形选择状态为 $j$，有 $k$ 个课程要教的方案数（是带 min-max 容斥系数的）
+
+[$Code$](https://uoj.ac/submission/465915)
