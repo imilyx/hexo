@@ -402,34 +402,13 @@ $A_i$ 也用 $type = 0$ 的方法构造，$B_i = C_i - A_i$。
 
 ## $\mathcal{3.20}$
 
-### [$Port\ Facility$](https://uoj.ac/problem/356)
+### [$JOI-$港口设施](https://uoj.ac/problem/356)
 
-相交的线段对应点间连边，二分图染色判断是否存在解，答案 $= 2^{连通块个数}$。
+写在「JOI」。
 
-考虑优化连边方式。首先三元环必不能存在。这样就保证了 $(1)(2)$ 不存在，那么就只有 $(3)$ 这种 $1$、$2$ 区间互相包含的形式了（$3$ 区间是当前处理的区间）：
-```
-111       111       11
- 222     222       2222
-  333      333       333
-(1)       (2)       (3)
-```
-面对 $(3)$，我们将 $3$ 区间与 $1$、$2$ 区间连边，然后删去 $2$，直到之后某一时刻 $1$ 的右端点小于当前区间左端点时删去 $1$ 并加入 $2$。
+### [$JOI-$烟花棒](https://uoj.ac/problem/357)
 
-所以将区间按左端点排序，对右端点维护堆，每个区间插入删除各一次。
-
-但是不懂为什么空间要开两倍？？
-
-[$Code$](https://uoj.ac/submission/464025)
-
-### [$Sparklers$](https://uoj.ac/problem/357)
-
-二分。不会了。……
-
-编号在区间 $[i, j]$ 的人烟花燃过了，那么当前烟花正在燃烧的人所处位置在区间 $[x_j - s * (j - i), x_i + s * (j - i)]$。即如果 $x_j - x_i \leq 2 * s * (j - i)$，全往左和全往右两种极端情况可以覆盖 $[i, j]$，那么 $[i, j]$ 是可以全燃过的合法区间。
-
-设 $b_i = x_i - 2 * s * i$。抽象一下，问题变成：有 $n$ 个点 $(i, b_i)$，初始有两个点在 $(k, b_k)$，每次可以选择一个点移动到左右的相邻位置，需要保证左边点始终高于右边点。贪心，从 $[k, k]$ 出发往外扩张，如果左端点可以在不小于右端点的情况下移动到左边更高的位置，就移，右端点同理。但是「抢占可达最高地和最低地」后离 $1$、$n$ 还有距离，怎么办？如果存在操作序列可到 $[1, n]$，那么反转该序列就是 $[1, n]$ 到当前位置，所以再从 $[1, n]$ 出发往里缩，看与扩张到的有无交集。
-
-[$Code$](https://loj.ac/s/1095701)
+写在「JOI」。
 
 ### [$Magic$](https://loj.ac/p/6503)
 
@@ -469,7 +448,7 @@ $f_{m, j}$ 还要乘上 $\frac{(n - j)!}{\prod a_i!}$ 才得到「至少」。�
 
 ## $\mathcal{3.21}$
 
-### [$CF627E$](https://www.luogu.com.cn/problem/CF627E)
+### [$\text{CF627E}$](https://www.luogu.com.cn/problem/CF627E)
 
 只会三方…… 正解好妙！！！枚举上边界 $i$，下边界从 $i$ 往下推，用链表以列为第一关键字、行为第二关键字维护区域内所有点。但是链表不支持随机访问，动态加点不可行。
 
@@ -501,13 +480,13 @@ $f_{m, j}$ 还要乘上 $\frac{(n - j)!}{\prod a_i!}$ 才得到「至少」。�
 
 ## $\mathcal{3.22}$
 
-### [$Dark\ Horse$](https://www.luogu.com.cn/problem/AT3981)
+### [$\text{Dark Horse}$](https://www.luogu.com.cn/problem/AT3981)
 
 你在哪都一样，不如放在 $1$。转化一下就是要每个 $[2^k + 1, 2^{k + 1}]$ 区间最小值都不是能打败你的危险人物。
 
 只有 $log$ 个区间。从大往小放危险人物，$f[i, S]$ 表示从大往小放到第 $i$ 个人，放满了 $S$ 区间，最后乘一个阶乘安排完剩下的人。
 
-### [$Student's\ Camp$](https://www.luogu.com.cn/problem/CF708E)
+### [$\text{Student's Camp}$](https://www.luogu.com.cn/problem/CF708E)
 
 拼接起来的地方错了。小锅酿成大祸啊！！！总之就是刚了半天补集转化然而正解是正着来的。
 
@@ -541,11 +520,11 @@ $$= Val[r] ( s[i - 1, m] - s[i - 1, m - r] ) - v[m - r] \sum\limits_{l \leq r} b
 
 注：代码中的 $f$、$s$、$g$ 与上述可能不同
 
-### [$Choosing\ Ads$](https://www.luogu.com.cn/problem/CF643G)
+### [$\text{Choosing Ads}$](https://www.luogu.com.cn/problem/CF643G)
 
 主元素法推广，线段树每个节点维护 $k = \lfloor \frac{100}{p} \rfloor$ 个可能众数，若新加进个数等于其中某个，就将那个的次数 $++$，否则让所有众数次数 $--$。为什么这样正确？最多每次删 $k + 1$ 个数，这样删 $\lfloor \frac{n}{k + 1} \rfloor$ 次，而每个出现频率 $\geq p%$ 的数出现了严格大于 $\lfloor \frac{n}{k + 1} \rfloor$ 次。$O(K^2nlogn)$。[$Code$](https://codeforces.com/problemset/submission/643/110725194)
 
-### [$Greenhouse\ Growth$](https://www.luogu.com.cn/problem/P4352)
+### [$\text{Greenhouse Growth}$](https://www.luogu.com.cn/problem/P4352)
 
 思想很简单：链表维护不同高度的块。显然只会在初始时合呈 V 或 Λ 形的块才可能中途合并，计算好可能的合并时间，丢到做日程表用的 vector 里去。但是可能会有非常多的特殊情况，比如中途被合并了这块就没了…… 所以合并的时候还要判一大堆东西。[~~代码贺的~~](https://www.luogu.com.cn/record/48275005)
 
@@ -559,7 +538,7 @@ $$= Val[r] ( s[i - 1, m] - s[i - 1, m - r] ) - v[m - r] \sum\limits_{l \leq r} b
 
 单写了
 
-### [$CF1491G$](https://www.luogu.com.cn/problem/CF1491G)
+### [$\text{CF1491G}$](https://www.luogu.com.cn/problem/CF1491G)
 
 ~~2800 的构造题！/fad~~
 

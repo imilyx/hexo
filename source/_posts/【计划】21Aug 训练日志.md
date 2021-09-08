@@ -209,167 +209,188 @@ NOI 同步赛成绩出啦…… 竟然比我的预估和洛谷评分都高，205
 数学卷子 yes
 更高更喵
 物理卷子
-化学卷子
+化学卷子 yes
 看论文集
 看 hhz 课件
+图灵杯订正 yes
+下楼走走 yes
+重启电脑
 
 ### 8.17
 
-订完 turing T3 下楼走会儿
+订完 turing T3 下楼走会儿 yes
 
-回来把 hhz 课件看了
+回来把 hhz 课件看了 no
 
-拉小提琴
+拉小提琴 no
 
-写数学作业 + 可能有的化学卷子
+写数学作业 no + 可能有的化学卷子 yes
 
-睡觉
+### 8.19
 
+gym 一套
+
+hhz 课件
+
+看论文集
+
+小提琴
+
+物理卷子
+
+补语文笔记
+
+## $\mathcal{8.20}$
 ---
 
-计算几何
+被 gym 教会了常系数齐次线性递推。
 
-定 板 子 啦
-
-uva12304
-
-平面图
-
+## $\mathcal{8.21}$
 ---
 
-字符串：
+调 gym 一道 LCT 调死了。
 
-CF594E cutting the line (zzy题) https://www.luogu.com.cn/problem/CF594E
-
-zjoi2017 字符串 https://www.luogu.com.cn/problem/P5211
-
-zjoi2020 字符串 https://www.luogu.com.cn/problem/P6629
-
-cf653f https://www.luogu.com.cn/problem/CF653F
-
-cf862f https://www.luogu.com.cn/problem/CF862F
-
-cf1110h https://www.luogu.com.cn/problem/CF1110H
-
-loj6681 https://loj.ac/p/6681
-
-ctsc珠宝商 https://www.luogu.com.cn/problem/P4218
-
+## $\mathcal{8.22}$
 ---
 
-咕咕咕的：
-
-cf582d https://www.luogu.com.cn/problem/CF582D
-
-sasha circle https://www.luogu.com.cn/problem/CF549E
-
-类 thusc 题 https://www.luogu.com.cn/problem/P7718
-
-小修和小栋生♂成树 https://loj.ac/p/2488
-
-无标号图编码 https://uoj.ac/problem/679
-
-有根无标号「奇树」计数 https://loj.ac/d/1927
-
+## $\mathcal{8.23}$
 ---
 
-### 串串
+### $XJOI2998$
 
-### strings
+#### $T1$
 
-### joisc 2019 聚会
+每位考虑，如果有奇数个 $1$ 直接跳过，怎么 $xor$ 都是 $1$，否则我们希望找一个偶数位和它 $and$ 起来最大的
+枚举子集，标记，均摊 $1e6$。
 
-### 300iq A
+#### $T2$
 
-### 杨表
+蛮妙的数学题，再次膜拜马爷爷
 
-### JOISC 2021
+设答案直线是 $y = kx$
 
-### UR 13
+考虑投影，表示成点积，$(x, y)$ 是 $x + ky$
 
-### NOI2019
+先把本来就关于中点呈中心对称的点对删除。如果删光了就说明有无穷解
 
-### IOI 18 19 20
+考虑给剩下来的点枚举配对，一对点 $(i, j)$ 可以配对当且仅当 $\frac{x_i + k y_i + x_j + k y_j}{2} = X + KY$，同时根据这个式子也可以发现 出现的 $K$ 有 $n^2$ 个，可能合法的 $K$ 只有 $\frac{n^2}{\frac{n}{2}} = O(n)$ 个，因为「合法」必须至少要对应 $\frac{n}{2}$ 对点。check 可能合法的 $K$，完事。
 
-### 矩阵变换
+细节就注意「小数表示成整数」和「去重」这俩。
 
-### k 小割
+坑点：第四个点 $n < 0$…… 神必出题人
 
-### 观众小 P
+#### $T3$
 
-### CERC2017-Cumulative Code
+如果直径 $L$ 是偶数，过中点；否则过中边
 
-分讨题。晚点搞它。
+每个子树里所有深度为 $L/2$ 的叶子作为该子树的关键叶子集合。等价于求使得只有至多一个关键叶子集合没被全部染黑的期望步数。
 
-### [$LOJ565-$mathematican 的二进制](https://loj.ac/p/565)
+染黑 $x$ 个期望步数不是 $\sum\limits_{i = 1}^x \frac{n}{n - (i - 1)}$，因为这是随机指定 $x$ 个的
+那是啥啊？$\sum\limits_{i = 1}^x \frac{n}{i}$
 
-### 舌尖上的方伯伯（计算几何）https://loj.ac/p/2216
+根据期望的线性性…… 考虑每个关键叶子集合的贡献，是「其余关键叶子集合都染黑」的贡献
 
-### 订正 opencup Kore
+直接算会算重，仔细说，算重的是所有叶子都染黑的贡献，减掉就好了。
 
-### 订正 XJOI1730 T3？
+- gym 102129 B
+- 整理计算几何
+- 订正百度之星三场初赛 + 复赛
+- 学习 kd-tree
 
-试试
+### 这几天都在打毛营啊唉……
 
-### 析合树……
-
-你鸽了多久了？
-
-### USACO 2021
-
-### 300iq contest 3
-
-### 2017-2018 ACM-ICPC, Central Europe Regional Contest (CERC 17) https://codeforces.com/gym/101620
-
-### LCT 维护子树信息
-
-写 exgcd 总结（通解）
-
----
-Gym 入坑指南：（勿删！有 xza 课件外强推场次）
-
-可看星级
-
-ICPC：
-- EC final 18(jiry_2)、19(xudyh)年
-- 日韩赛区的 ICPC
-- 欧洲的 NEERC、NERC、CERC(15~17)
-官网找题解
-
-official international personal contest:
-- yandex.algorithm
-    2018 final round
-    以及一些 qualification round
-- russian code cup
-- facebook hacker camp
-- google code jam
-    final
-
-school/university/city/region championship
-- CCPC
-    分站赛
-    final(18、19)
-- 多校
-
-opencup contest & training camp contest
-- moscow workshop
-    https://discover.it-edu.com/en/
-- petrozavodsk camp 毛营题
-    有一些科技
-- open cup
-题解找google
-
-看讨论？也许有题解
-
-opencup 里推荐的
-- XXI opencup gp of tokyo
-- XX opencup gp of tokyo
-- XXI korea
-- 2019 ICPC asia east continent final
-- 300iq contest 1 ~ 3
-- rng_58 (14、15) 毛营
+## $\mathcal{8.26}$
 ---
 
-出题思路：
-LOJ6509 上图版
-k 进制 FWT 板题，或者稍微变个花样
+- 订正毛营
+- 整理 yn zrf、ryz、zzf 笔记
+  学习带花树，做毛营 8.24 某题
+
+### 学习了带花树，写了「WC2016-挑战 NPC」
+
+## $\mathcal{8.28}$
+---
+
+- 学习圆面积并
+  做集训队 - 圆形
+  订正毛营某题
+
+## $\mathcal{8.30}$
+---
+
+### 小修和小栋生♂成树
+
+写在「拟阵」
+
+### [$CF98E$](https://www.luogu.com.cn/problem/CF98E)
+
+绝妙好题，感谢 zzf 学长
+
+自己可以选择：
+- 真的在问
+- 询问一张自己手里的牌，迷惑对方
+
+对方可以选择：
+- 相信对方真的在问
+- 认为对方在迷惑自己
+
+$f(n, m)$ 表示先手手里有 $n$ 张未废弃的牌，后手手里有 $m$ 张未废弃的牌时先手的胜率。下面「我」的真假表示真的在问还是在迷惑对方，「对方」的真假表示相信我真的在问还是认为我在迷惑ta。$f(n, m) =$
+
+1. 我真，对方真：$\frac{m}{m + 1}(1 - f(m - 1, n))$
+2. 我真，对方假：$\frac{m}{m + 1}(1 - f(m - 1, n)) + \frac{1}{m + 1}$
+3. 我假，对方真：$1$
+4. 我假，对方假：$1 - f(m, n - 1)$
+
+然后就是纳什均衡那套理论的事情了。先手是否选择真，胜率都应相等，否则后手可以改变自己的策略使得先手胜率改变
+
+[$Code$](https://codeforces.com/problemset/submission/98/127482226)
+
+## $\mathcal{8.31}$
+---
+
+### [$\text{CEOI2019-魔法树}$](https://loj.ac/p/3166)
+
+来练练线段树合并。（纯粹是 xml 订 ptz 订吐了
+
+$dp[x, i]$ 表示第 $i$ 天断掉 $x$ 的父边的最大收益。
+
+合并两个儿子 $u,v$ 的答案
+
+$$
+dp[fa, i] = \max\limits_{j = 0}^i (dp[u, i] + dp[v, j], dp[u, j] + dp[v, i])
+$$
+
+max 卷积形式，线段树合并维护，然后别忘了单点加 fa 的贡献。
+
+坑点：由于「先割儿子再割爸爸」的限制，当前点贡献必须最后加，并且还要遵循 max 卷积（也就多加两个 SGT 函数的事情
+
+[$Code$](https://loj.ac/s/1243166)
+
+### [光棱碎片](https://www.luogu.com.cn/problem/P7279)
+
+缝合怪题就是 口胡的绝佳好时机
+
+首先拆成 $\leq R$
+
+建 sam，维护 endpos 集合，对每个节点考虑集合内的 $(i, j)$ 作为 $(r_1, r_2)$ 的贡献：
+
+设 $j$ 所在点包含最长串的长度为 $len$，贡献 $= \min(len, R - (a_i \oplus a_j))$
+
+取 $\min$ 了啊！那就分讨：
+
+1. $a_i \oplus a_j \leq R - len$ ：需要求这样的 $(i, j)$ 对数
+2. $R - len < a_i \oplus a_j \leq R$ ：需要求这样的 $(i, j)$ 对数以及 $(a_i \oplus a_j)$ 之和
+
+感觉跟 trie 树快搭上了。
+
+不是是已经搭上了。维护每位 $1$ 的个数即可。
+
+缝合怪吧这个题！
+
+实现细节就是，在 SAM 上每个节点统计贡献其实是统计子树之间的贡献，就用 dsu on tree 那套理论，先解决轻儿子再抹去轻儿子再解决重儿子再继承重儿子再加入自己和轻儿子统计已加入的子树对新加子树的贡献作为当前节点贡献。
+
+$i$ 和 $j$ 是本质相同子串啊喂！顺序无关！
+
+复杂度 $O(nlogn * log^2 a_i)$（trie 走到每个深度都要查没走那棵子树的每位）
+
+upd：果然早上调隔夜题永不超过 0.5h 的 buff 最棒了……

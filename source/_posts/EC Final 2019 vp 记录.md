@@ -67,6 +67,46 @@ mathjax: true
 
 [$Code$](https://codeforces.com/gym/102471/submission/114812824)
 
+upd on 2021.9.4 在网上看到了 [Freopen 大佬的组合意义证明](https://blog.csdn.net/qq_35950004/article/details/106958131)
+
+大概是：我们要证明 $f^p = \epsilon$，$p$ 是质数、模数
+
+$f^p$ 的组合意义是选 $p$ 个乘积为 $n$ 的数的总方案数，$f$ 的每一项表示选这个数的方案数
+
+$$
+f^p(n) = \sum\limits_{\prod a_i = n} \prod\limits_{i = 1}^n f(a_i)
+$$
+
+假设已经确定了 $a$ 排序后的到的序列，现在要算给这个序列对应的 $a$ 序列的方案数。假设有 $t$ 种值，每种值有 $b_i$ 个，方案数是个多元二项式 $= \frac{p!}{\prod\limits_{i = 1}^t b_i!} \bmod p$
+
+有个名为库默尔定理的说，$\binom{n + m}{n}$ 含 $p$ 的幂次等于 $n + m$ 在 $p$ 进制下的进位次数。
+
+---
+
+证明：
+
+$$
+\binom{n + m}{n} 含 p 的幂次 \\
+= \sum\limits_{i \geq 1} \lfloor \frac{n + m}{p^i} \rfloor - \sum\limits_{i \geq 1} \lfloor \frac{n}{p^i} \rfloor - \sum\limits_{i \geq 1} \lfloor \frac{m}{p^i} \rfloor \\
+= \sum\limits_{i \geq 1} \lfloor \frac{n + m}{p^i} \rfloor - \lfloor \frac{n}{p^i} \rfloor - \lfloor \frac{m}{p^i} \rfloor
+$$
+
+然后你发现每项不是 $1$ 就是 $0$。它实际上等价于 $p$ 进制下 $n$ 与 $m$ 相加**过程中**，第 $i$ 位是否发生进位。
+
+---
+
+总之这个定理就是把组合数和进位联系起来了。
+
+回到上面这个多元二项式，它 $\neq 0$ 当且仅当在 $p$ 进制下将 $b_i$ 累加不发生进位。
+
+但是 $\sum\limits_{i = 1}^t b_i = p$。所以不会在**相加过程中**发生进位的只有 $t = 1, b_1 = p$ 啦。
+
+也就是说 $p$ 个 $a_i$ 完全相同时才对 $f^p(a_1^p)$ 有 $f(a_1)^p$ 的贡献。
+
+$a_1 = 1$ 时对 $f^p(1)$ 有 $1$ 的贡献，$a_2 = 2$ 对 $f^p(2^p)$ 有 $2^p$ 的贡献，但是 $1 < x < 2^p$ 的 $f^p(x)$ 由于没有整数 $p$ 次根，都是 $\bmod p = 0$ 的。因为$f^p$ 仅有 $np$ 项，$n$ 仅有 $10^6$，$np < 2^p$ 所以可以近似认为 $f^p = \epsilon$。也就是说 $n$ 出到 $2^p$ 以上这个结论就错了 /fad
+
+回到原题，我们已经知道了在这题 $n$ 较小的条件下 $f^p = \epsilon, f^k = g,$ 设 $\hat{k}$ 是 $k$ 模 $p$ 意义下的逆元，即 $\hat{k} * k \equiv 1 \pmod{p}$，设 $\hat{k} * k = wp + 1$, 那么 $g^{\hat{k}} = (f^k)^{\hat{k}} = f^{wp + 1} = f$。
+
 ## $K$
 
 平面图最大流转最小割转对偶图最短路。

@@ -29,7 +29,107 @@ mathjax: true
 
 众所周知矩阵生来就做这事儿的，但是 $n$ 比较大的时候就没前途。于是就出现了——特征多项式优化矩阵快速幂。求第 $n$ 项复杂度为 $O(k^2 log n)$
 
-upd: 原先写的不好，删了。复读 oi-wiki。
+---
+
+upd2: 下面是啥呀…… 一点都不严谨哼 今天被 gym 教育了一发 好像终于学会了！类木！
+
+设 $a$ 下标为 $[0, n - 1]$，$F_n = \sum\limits_{i = 1}^k a_{k - i} F_{n - i}$
+
+$$
+A = 
+\left(
+  \begin{array}{l}
+  0 & 1 & 0 & \cdots & 0 \\
+  0 & 0 & 1 & \cdots & 0 \\
+  \vdots & \vdots & \vdots & \ddots & \vdots \\
+  0 & 0 & 0 & \cdots & 1 \\
+  a_0 & a_1 & a_2 & \cdots & a_{k - 1}
+  \end{array}
+\right),
+F_{n - k} = \left(
+  \begin{array}{l}
+  F_{n - k} \\
+  \cdots \\
+  F_{n - 2} \\
+  F_{n - 1}
+  \end{array}
+  \right)
+$$
+
+$$
+F_n = A F_{n - 1} = A^n F_0 \\
+$$
+
+$A^0 = E$。
+
+观察 $A$ 的次幂矩阵每乘一个 $A$，第一行的变化，并用多项式语言表述：
+
+$$
+(r_0, r_1, \cdots, r_{k - 1}) \longrightarrow r_{k - 1} \cdot (a_0, a_1, \cdots, a_{k - 1}) + (0, r_0, \cdots, r_{k - 2}) \\
+R(x) = \sum\limits_{i = 0}^{k - 1} r_i x^i \longrightarrow x \cdot R(x) \bmod (x^k - \sum\limits_{i = 0}^{k - 1} a_i x^i)
+$$
+
+~~不懂就手玩~~
+
+设 $M(x) = x^k - \sum\limits_{i = 0}^{k - 1} a_i x^i$。
+
+$$
+A^n = \left(
+  \begin{array}{l}
+  x^n \bmod M(x) \\
+  x^{n + 1} \bmod M(x) \\
+  \cdots \\
+  x^{n + k - 1} \bmod M(x)
+  \end{array}
+  \right)
+$$
+
+将 $A^n$ 第一行，即 $x^n \bmod M(x)$ 乘给 $F_{[0 \cdots k - 1]}$（给定的前 $k$ 项）即可得到 $F_n$。
+
+*坑点：要特判 $K = 1$ 的情况…… 因为 $2 * (K - 1) < K$ 了，fmul 函数（执行多项式模意义下相乘）会出问题。*
+
+<details>
+  <summary>real_template(bzoj_4161)</summary>
+  ``` c++
+    const int N = 4e3 + 10;
+    int n, K, a[N], h[N], tmp[N], res[N], c[N];
+    void fmul(int x[], int y[]) {
+      rep(i, 0, 2 * K - 2) c[i] = 0;
+      rep(i, 0, K - 1)
+        rep(j, 0, K - 1) Add(c[i + j], mul(x[i], y[j]));
+      clr(x);
+      per(i, 2 * K - 2, K) {
+        rep(j, 1, K) Add(c[i - j], mul(c[i], a[K - j]));
+        c[i] = 0;
+      }
+      rep(i, 0, K - 1) x[i] = c[i];
+    }
+    void fpow(int n) {
+      clr(tmp);
+      clr(res);
+      tmp[1] = 1;  // x^1
+      res[0] = 1;
+      for (; n; n >>= 1, fmul(tmp, tmp))
+        if (n & 1) fmul(res, tmp);
+    }
+    signed main() {
+      rd(n), rd(K);
+      rep(i, 0, K - 1) rd(a[K - 1 - i]), a[K - 1 - i] = (a[K - 1 - i] < 0 ? mod + a[K - 1 - i] : a[K - 1 - i]);
+      rep(i, 0, K - 1) rd(h[i]), h[i] = (h[i] < 0 ? mod + h[i] : h[i]);
+      if (K == 1) return printf("%d\n", qpow(a[0], h[0])), 0;
+      fpow(n);
+      int fn = 0;
+      rep(i, 0, K - 1) Add(fn, mul(res[i], h[i]));
+      fn = (fn % mod + mod) % mod;
+      printf("%d\n", fn);
+      return 0;
+    }
+  ```
+</details>
+
+---
+
+upd1: 原先写的不好，删了。复读 oi-wiki。
 
 从生成函数的角度来理解，就是将每个 $x^{n - i}$ 的系数乘上一个常数转移给了 $x^n$。
 

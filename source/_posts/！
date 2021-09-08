@@ -1,0 +1,41 @@
+---
+title: '【学习笔记】Min_25 筛'
+date: 2021-09-05 09:50:40
+tags: 
+    - 学习笔记
+mathjax: true
+---
+
+$O(\frac{n^{\frac{3}{4}}}{logn})$ 求解积性函数前缀和！
+
+$$
+\sum\limits_{i = 1}^n f(i) = \sum\limits_{\text{p is a prime}, 1 \leq p \leq n} f(p) + \sum\limits_{\text{i is not a prime}} f(i)
+$$
+
+设 $min(i)$ 表示 $i$ 的最小质因子。枚举第二部分合数的最小质因子以及其次数：
+
+$$
+\text{second part} = \sum\limits_{\text{p is a prime}, 1 \leq p^e \leq n} f(p^e) \left ( \sum\limits_{1 \leq i \leq \frac{n}{p^e}, min(i) > p} f(i) \right )
+$$
+
+---
+
+先求解第一部分所有质数的 $f$ 之和。
+
+设 $g(n, j) = \sum\limits_{i = 1}^n [ \text{i is a prime or min(i) > pri[j] } ] i^k$，大概表示 $1$ ~ $n$ 里是质数或最小质因子大于第 $j$ 个质数的 $k$ 次幂之和，其中 $i^k$ 是一个和 $f$ 在质数处的取值完全相同的完全积性函数。
+
+我们要求的是 $g(n, x)$，其中 $x$ 为 $\leq \sqrt{n}$ 的最大质数。
+
+考虑从 $g(n, j - 1)$ 转移到 $g(n, j)$，减掉的应当恰好是那些 $min = pri_j$ 的合数的 $k$ 次幂。
+
+$$
+g(n, j) = g(n, j - 1) - p_j^k \left ( g(\frac{n}{pri_j}, j - 1) - g(pri_{j - 1}, j - 1) \right )
+$$
+
+这是对的因为 $g$ 是个完全积性函数，虽然提出一个 $pri_j$ 之后可能还有 $pri_j$ 这个因子，但 dp 值可以直接相乘，这很好的。
+
+$g(pri_{j - 1}, j - 1)$ 其实就是前 $j - 1$ 个质数的 $k$ 次方和，因为 $pri_{j - 1} \leq \sqrt{n}$，这部分可以直接线性筛预处理。
+
+---
+
+第二部分
